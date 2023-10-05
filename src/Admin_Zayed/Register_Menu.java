@@ -3,18 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Admin_Zayed;
+import javax.swing.JFrame;
+import Admin_Zayed.Login_Menu;
 
-/**
- *
- * @author Zayed
- */
-public class Register_Menu extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Register_Menu
-     */
+public class Register_Menu extends JFrame {
     public Register_Menu() {
         initComponents();
+        AdminClass AC = new AdminClass();
+        AC.centerFrameOnScreen(this);
+        
     }
 
     /**
@@ -26,24 +23,53 @@ public class Register_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        buttonLogin1 = new javax.swing.JButton();
+        labelRegister = new javax.swing.JLabel();
+        buttonRegisterCancel = new javax.swing.JButton();
+        textRegisterUsername = new javax.swing.JTextField();
+        labelRegisterUsername = new javax.swing.JLabel();
+        textRegisterPassword = new javax.swing.JTextField();
+        labelRegisterPassword = new javax.swing.JLabel();
+        labelRegisterRole = new javax.swing.JLabel();
+        comboRegisterRole = new javax.swing.JComboBox<>();
+        buttonRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Register");
+        labelRegister.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelRegister.setText("Register");
 
-        buttonLogin1.setBackground(new java.awt.Color(255, 153, 51));
-        buttonLogin1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buttonLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin1.setText("REGISTER");
-        buttonLogin1.setBorder(null);
-        buttonLogin1.setBorderPainted(false);
-        buttonLogin1.addActionListener(new java.awt.event.ActionListener() {
+        buttonRegisterCancel.setBackground(new java.awt.Color(204, 204, 204));
+        buttonRegisterCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonRegisterCancel.setForeground(new java.awt.Color(0, 0, 0));
+        buttonRegisterCancel.setText("CANCEL");
+        buttonRegisterCancel.setBorder(null);
+        buttonRegisterCancel.setBorderPainted(false);
+        buttonRegisterCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLogin1ActionPerformed(evt);
+                buttonRegisterCancelActionPerformed(evt);
+            }
+        });
+
+        labelRegisterUsername.setText("Username");
+
+        labelRegisterPassword.setText("Password");
+
+        labelRegisterRole.setText("Role");
+
+        comboRegisterRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select the role", "Customer", "Vendor", "Delivery Runner", " " }));
+        comboRegisterRole.setToolTipText("");
+
+        buttonRegister.setBackground(new java.awt.Color(255, 153, 51));
+        buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonRegister.setForeground(new java.awt.Color(255, 255, 255));
+        buttonRegister.setText("REGISTER");
+        buttonRegister.setBorder(null);
+        buttonRegister.setBorderPainted(false);
+        buttonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegisterActionPerformed(evt);
             }
         });
 
@@ -51,31 +77,71 @@ public class Register_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addComponent(labelRegister)
                 .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textRegisterUsername)
+                            .addComponent(labelRegisterUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textRegisterPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                            .addComponent(labelRegisterPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelRegisterRole, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboRegisterRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonRegisterCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
-                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(22, 22, 22)
+                .addComponent(labelRegister)
+                .addGap(18, 18, 18)
+                .addComponent(labelRegisterUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textRegisterUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelRegisterPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textRegisterPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelRegisterRole)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboRegisterRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonRegisterCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
+    private void buttonRegisterCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterCancelActionPerformed
+        
+        // Create a new instance of Login_Menu using its constructor
+        Login_Menu LM = new Login_Menu (this, true); 
+        
+        // Closes the current form
+        this.dispose(); 
+        
+        // Reopen the Login_Menu form
+        LM.setVisible(true); 
+        
+    }//GEN-LAST:event_buttonRegisterCancelActionPerformed
+
+    private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonLogin1ActionPerformed
+    }//GEN-LAST:event_buttonRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,7 +179,14 @@ public class Register_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonLogin1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton buttonRegister;
+    private javax.swing.JButton buttonRegisterCancel;
+    private javax.swing.JComboBox<String> comboRegisterRole;
+    private javax.swing.JLabel labelRegister;
+    private javax.swing.JLabel labelRegisterPassword;
+    private javax.swing.JLabel labelRegisterRole;
+    private javax.swing.JLabel labelRegisterUsername;
+    private javax.swing.JTextField textRegisterPassword;
+    private javax.swing.JTextField textRegisterUsername;
     // End of variables declaration//GEN-END:variables
 }

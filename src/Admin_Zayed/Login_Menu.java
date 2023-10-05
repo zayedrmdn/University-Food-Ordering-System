@@ -1,16 +1,21 @@
 package Admin_Zayed;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
+import javax.swing.JDialog;
 
 
 
-public class Login_Menu extends javax.swing.JDialog {
+public class Login_Menu extends JDialog {
 
     public Login_Menu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         buttonLogin.setEnabled(false); // Initial button is disabled
         TextFieldDetector(); // Constant checking if field text is null
+        
+        AdminClass AC = new AdminClass();
+        
+        AC.centerFrameOnScreen(this);
         
     }
     
