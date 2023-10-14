@@ -62,7 +62,7 @@ public class Vendor_Menu extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(255, 0, 51));
-        jButton4.setText("EXIT");
+        jButton4.setText("RETURN");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -123,7 +123,7 @@ public class Vendor_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        System.exit(0);
+        this.dispose();
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

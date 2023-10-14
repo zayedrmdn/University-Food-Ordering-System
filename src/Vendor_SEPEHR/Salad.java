@@ -4,6 +4,11 @@
  */
 package Vendor_SEPEHR;
 import Vendor_SEPEHR.VendorClass;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,6 +46,11 @@ public class Salad extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(204, 255, 255));
         jButton1.setText("TOSSED");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(51, 255, 51));
         jButton2.setText("CAESAR");
@@ -52,6 +62,11 @@ public class Salad extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 255, 204));
         jButton3.setText("GREEK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 0, 0));
         jButton4.setText("RETURN");
@@ -95,7 +110,13 @@ public class Salad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Salad.txt",true));
+            writer.write("CEASAR\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -105,6 +126,26 @@ public class Salad extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Salad.txt",true));
+            writer.write("TOSSED\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Salad.txt",true));
+            writer.write("GREEK\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

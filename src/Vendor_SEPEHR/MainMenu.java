@@ -3,7 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vendor_SEPEHR;
+import static Vendor_SEPEHR.VendorClass.CancelationOrder;
+import static Vendor_SEPEHR.VendorClass.VendorMenu;
 import Vendor_SEPEHR.Vendor_Menu;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.File;
+
 
 /**
  *
@@ -34,12 +44,14 @@ public class MainMenu extends javax.swing.JFrame {
         buttonGroup5 = new javax.swing.ButtonGroup();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3.setBackground(new java.awt.Color(0, 204, 204));
         jButton3.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
-        jButton3.setText("Menu");
+        jButton3.setText("MENU");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -48,7 +60,30 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 0, 255));
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        jButton1.setText("Remove order");
+        jButton1.setText("CANCEL ORDERS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 0));
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jButton2.setText("VIEW ORDER");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(new java.awt.Color(255, 0, 51));
+        jButton4.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        jButton4.setText("EXIT");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,31 +92,84 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(175, 175, 175)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(164, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-        
-        Vendor_Menu menu = new Vendor_Menu ();
-        
-        menu.setVisible(true);
-
+      
+        VendorMenu();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            BufferedReader reader=new BufferedReader(new FileReader("/Users/sepehrjokanian/Documents/Salad.txt"));
+            String line;
+            System.out.println("Ordered Salad:");
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+            }
+  
+                    } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         try {
+            BufferedReader reader=new BufferedReader(new FileReader("/Users/sepehrjokanian/Documents/Food.txt"));
+            String line;
+            System.out.println("Ordered Food:");
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+            }
+    } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         try {
+            BufferedReader reader=new BufferedReader(new FileReader("/Users/sepehrjokanian/Documents/Beverage.txt"));
+            String line;
+            System.out.println("Ordered Beverage:");
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+            }
+    } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       CancelationOrder();
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -125,7 +213,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 
     private String menu() {

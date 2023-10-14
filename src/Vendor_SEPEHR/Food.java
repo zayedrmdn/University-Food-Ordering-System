@@ -4,6 +4,12 @@
  */
 package Vendor_SEPEHR;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author sepehrjokanian
@@ -41,9 +47,19 @@ public class Food extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 153, 102));
         jButton1.setText("CHICKEN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 153, 204));
         jButton2.setText("FISH");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(102, 102, 102));
         jButton3.setText("KEBAB");
@@ -54,9 +70,19 @@ public class Food extends javax.swing.JFrame {
         });
 
         jButton4.setText("RICE");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 204));
         jButton5.setText("PRAWN");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(255, 0, 0));
         jButton6.setText("RETURN");
@@ -80,32 +106,40 @@ public class Food extends javax.swing.JFrame {
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jButton2)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jButton3)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jButton4)
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Food.txt",true));
+            writer.write("KEBAB\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -116,6 +150,51 @@ public class Food extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Food.txt",true));
+            writer.write("CHICHEN\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Food.txt",true));
+            writer.write("FISH\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Food.txt",true));
+            writer.write("RICE\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            BufferedWriter writer=new BufferedWriter(new FileWriter("/Users/sepehrjokanian/Documents/Food.txt",true));
+            writer.write("PRAWN\n");
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Food.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
