@@ -1,11 +1,57 @@
 package Yjun;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class Customer 
 {
     private String name;
     private List<Order> orderHistory;
+    private List<Reviews> reviews;
+    private List<Items> items;
+   
+    public List<String> getItems() {
+        return items;
+    }
+    
+    
+    public List<String> getReviews() {
+        return reviews;
+    }
+    
+    
+    public void saveOrdersToFile(String filename) {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+        for (Order order : orderHistory) {
+            writer.println("Order Status: " + order.getStatus());
+            writer.println("Items:");
+            for (Item item : order.getItems()) {
+                //writer.println(item.getName() + " - " + item.getPrice());
+            }
+            writer.println();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+    
+    public void saveReviewsToFile(String filename) {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+        for (Order order : orderHistory) {
+            for (String review : order.getReviews()) {
+                writer.println("Review for Order ID: " + order.hashCode());
+                writer.println(review);
+                writer.println();
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+    
+    
     
         enum OrderStatus
     {
@@ -94,5 +140,6 @@ class Order
         public void addReview(String review) 
         {
             reviews.add(review);
-        }
+        }  
     }
+
