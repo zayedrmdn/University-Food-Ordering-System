@@ -9,26 +9,20 @@ public class Customer
 {
     private String name;
     private List<Order> orderHistory;
-    private List<Reviews> reviews;
-    private List<Items> items;
+    private List<String> reviews;
+    private List<Item> items;
    
-    public List<String> getItems() {
+    public List<Item> getItems() {
         return items;
     }
-    
-    
-    public List<String> getReviews() {
-        return reviews;
-    }
-    
-    
+   
     public void saveOrdersToFile(String filename) {
     try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
         for (Order order : orderHistory) {
             writer.println("Order Status: " + order.getStatus());
             writer.println("Items:");
             for (Item item : order.getItems()) {
-                //writer.println(item.getName() + " - " + item.getPrice());
+                writer.println(item.getName() + " - " + item.getPrice());
             }
             writer.println();
         }
@@ -141,5 +135,38 @@ class Order
         {
             reviews.add(review);
         }  
+        public List<String> getReviews() 
+        {
+        return reviews;
+        }
     }
+
+class Item
+{
+     private String name;
+    private double price;
+
+    public Item(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+}
+
+class Reviews
+{
+    private String reviewText;
+
+    public Reviews(String reviewText) 
+    {
+        this.reviewText = reviewText;
+    }
+}
+}
 
