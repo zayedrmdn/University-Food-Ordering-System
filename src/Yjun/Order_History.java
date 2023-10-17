@@ -30,6 +30,8 @@ public class Order_History extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         lblOrderHistory = new javax.swing.JLabel();
         btnReOrder = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableOrderHistory = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,6 +58,19 @@ public class Order_History extends javax.swing.JFrame {
             }
         });
 
+        TableOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Food", "Amount"
+            }
+        ));
+        jScrollPane2.setViewportView(TableOrderHistory);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,20 +78,30 @@ public class Order_History extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addComponent(lblOrderHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnReOrder)
-                .addContainerGap())
+                .addGap(19, 19, 19))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(76, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblOrderHistory)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                 .addComponent(btnReOrder)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(39, 39, 39)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(49, Short.MAX_VALUE)))
         );
 
         pack();
@@ -122,8 +147,10 @@ public class Order_History extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TableOrderHistory;
     private javax.swing.JButton btnReOrder;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblOrderHistory;
     // End of variables declaration//GEN-END:variables
