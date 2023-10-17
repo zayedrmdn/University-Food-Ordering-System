@@ -173,7 +173,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="18" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value=" Ithem"/>
+        <Property name="text" type="java.lang.String" value=" Item"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nameTxt">
