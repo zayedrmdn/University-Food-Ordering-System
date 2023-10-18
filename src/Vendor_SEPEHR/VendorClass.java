@@ -1,11 +1,11 @@
 package Vendor_SEPEHR;
 
 public class VendorClass {
-    
     public static void MenuIthem(){
-        MenuIthems menu = new MenuIthems();
+        MenuItems menu = new MenuItems();
         menu.setVisible(true);
     }
+    
     public static void AcceptOrder(){
         AcceptOrder ord=new AcceptOrder();
         ord.setVisible(true);
@@ -18,4 +18,7 @@ public class VendorClass {
       StatusOrder so=new StatusOrder();
       so.setVisible(true);
   }
+  
+  
 }
+ 
