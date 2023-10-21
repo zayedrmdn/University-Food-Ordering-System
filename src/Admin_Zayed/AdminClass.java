@@ -27,4 +27,8 @@ public class AdminClass
         window.setLocation(x, y);
     }
     
+    /*public void Writer()
+    {
+        
+    }*/
 }

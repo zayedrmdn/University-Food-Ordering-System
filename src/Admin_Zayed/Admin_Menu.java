@@ -75,6 +75,11 @@ public class Admin_Menu extends javax.swing.JFrame {
         buttonSave.setBackground(new java.awt.Color(51, 255, 51));
         buttonSave.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         buttonSave.setText("Save");
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSaveActionPerformed(evt);
+            }
+        });
 
         buttonCheckBalance.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         buttonCheckBalance.setText("Check Balance");
@@ -137,6 +142,10 @@ public class Admin_Menu extends javax.swing.JFrame {
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSaveActionPerformed
 
     /**
      * @param args the command line arguments
