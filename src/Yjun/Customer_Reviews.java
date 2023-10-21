@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.File;
 
 public class Customer_Reviews extends javax.swing.JFrame {
-
+Customer cc = new Customer("Name");
   
     public Customer_Reviews() {
         initComponents();
@@ -92,20 +92,9 @@ public class Customer_Reviews extends javax.swing.JFrame {
 
     private void btnReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReviewActionPerformed
         String filePath = "C:\\Users\\yjun0\\OneDrive - Asia Pacific University\\A.P.U\\Y2 Sem 1\\Java\\Reviews.txt"; 
-        File selectedFile = new File(filePath);
-
-    try (FileReader fileReader = new FileReader(selectedFile);
-         BufferedReader reader = new BufferedReader(fileReader)) {
-        StringBuilder content = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            content.append(line).append("\n");
-        }
-        tFieldReviews.setText(content.toString());
-    } catch (IOException | SecurityException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Error reading the file.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        String line = tFieldReviews.getText();
+        cc.addReviews(line);
+        cc.saveReviewsToFile(filePath);
     }//GEN-LAST:event_btnReviewActionPerformed
 
 
