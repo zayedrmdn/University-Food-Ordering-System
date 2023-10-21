@@ -26,9 +26,4 @@ public class AdminClass
         // Set the location of the JFrame to the calculated coordinates
         window.setLocation(x, y);
     }
-    
-    /*public void Writer()
-    {
-        
-    }*/
 }
