@@ -7,7 +7,7 @@ package Yjun;
 
 
 public class OrderHistory extends javax.swing.JFrame {
-    Order order = new Order();
+    
     /**
      * Creates new form OrderHistory
      */
@@ -111,7 +111,7 @@ public class OrderHistory extends javax.swing.JFrame {
     private void TableOrderHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOrderHistoryMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TableOrderHistoryMouseClicked
-
+    Order order = new Order();
     private void btnReOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReOrderActionPerformed
         int selectedRow = TableOrderHistory.getSelectedRow();
 
