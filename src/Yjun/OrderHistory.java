@@ -43,21 +43,22 @@ public class OrderHistory extends javax.swing.JFrame {
 
         TableOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Kfc",  new Double(9000.1)},
-                {"Mcdonald",  new Double(100.0)},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {"Kfc",  new Double(9000.1), "Pending"},
+                {"Mcdonald",  new Double(100.0), "Pending"},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Food", "Amount"
+                "Food", "Amount", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
