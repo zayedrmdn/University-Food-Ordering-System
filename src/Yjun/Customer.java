@@ -47,80 +47,56 @@ public class Customer
         this.items = new ArrayList<>(); // Initialize the items list
     }
     
-    public void placeOrder(Order order) 
-    {
-        orderHistory.add(order);
-    }
-
-    public void cancelOrder(Order order) 
-    {
-        if (orderHistory.contains(order)) {
-            order.cancelOrder();
-        }
-    }
-
-    public OrderStatus checkOrderStatus(Order order) 
-    {
-        if (orderHistory.contains(order)) {
-            return order.getStatus();
-        } else {
-            return OrderStatus.NOT_FOUND;
-        }
-    }
-
-    public List<Order> getOrderHistory() 
-    {
-        return orderHistory;
-    }
+   
 
 }
 
-class Order
-    {
-        private List<String> items;
-        private Customer.OrderStatus status;
-        private List<Double> prices;
-        
-        public Order()
-        {
-            this.items = items;
-            this.status = Customer.OrderStatus.PENDING;
-            this.prices = prices;
-        }
-        
-       public void saveOrderToFile(String filename) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-            for (int i = 0; i < items.size(); i++) {
-                String line = "Food:"+ items.get(i) + "\nPrices:" + prices.get(i);
-                writer.write(line);
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        }
-         public void addItem(String foodName, double price) 
-         {
-        items.add(foodName);
-        prices.add(price);
-        }
-        
-        public void cancelOrder()
-        {
-            this.status = Customer.OrderStatus.CANCELED;
-        }
-        
-         public Customer.OrderStatus getStatus() 
-         {
-        return status;
-         }
-
-        public List<String> getItems() 
-        {
-            return items;
-        }
-    }
+//class Order
+//    {
+//        private List<String> items;
+//        private Customer.OrderStatus status;
+//        private List<Double> prices;
+//        
+//        public Order()
+//        {
+//            this.items = new ArrayList<>();;
+//            this.status = Customer.OrderStatus.PENDING;
+//            this.prices = new ArrayList<>();;
+//        }
+//        
+//       public void saveOrderToFile(String filename) {
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+//            for (int i = 0; i < items.size(); i++) {
+//                String line = "Food:"+ items.get(i) + "\nPrices:" + prices.get(i);
+//                writer.write(line);
+//            }
+//            writer.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        }
+//         public void addItem(String foodName, double price) 
+//         {
+//        items.add(foodName);
+//        prices.add(price);
+//        }
+//        
+//        public void cancelOrder()
+//        {
+//            this.status = Customer.OrderStatus.CANCELED;
+//        }
+//        
+//         public Customer.OrderStatus getStatus() 
+//         {
+//        return status;
+//         }
+//
+//        public List<String> getItems() 
+//        {
+//            return items;
+//        }
+//    }
 
 class Item
 {
