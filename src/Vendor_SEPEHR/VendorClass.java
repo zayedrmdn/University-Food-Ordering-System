@@ -1,5 +1,6 @@
 package Vendor_SEPEHR;
 
+
 public class VendorClass {
     public static void MenuItem(){
         MenuItem menu = new MenuItem();
@@ -17,6 +18,10 @@ public class VendorClass {
   public static void StatusOrder(){
       StatusOrder so=new StatusOrder();
       so.setVisible(true);
+  }
+  public static void RevenueDashh(){
+      RevenueDash dsh=new RevenueDash();
+      dsh.setVisible(true);
   }
   
   
