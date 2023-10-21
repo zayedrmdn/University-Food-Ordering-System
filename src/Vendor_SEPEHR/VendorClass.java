@@ -1,8 +1,8 @@
 package Vendor_SEPEHR;
 
 public class VendorClass {
-    public static void MenuIthem(){
-        MenuItems menu = new MenuItems();
+    public static void MenuItem(){
+        MenuItem menu = new MenuItem();
         menu.setVisible(true);
     }
     

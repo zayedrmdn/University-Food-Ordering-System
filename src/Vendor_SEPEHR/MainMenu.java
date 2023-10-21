@@ -4,7 +4,8 @@
  */
 package Vendor_SEPEHR;
 
-import static Vendor_SEPEHR.VendorClass.MenuIthem;
+
+import static Vendor_SEPEHR.VendorClass.MenuItem;
 import static Vendor_SEPEHR.VendorClass.Order;
 import static Vendor_SEPEHR.VendorClass.StatusOrder;
 
@@ -120,7 +121,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       
-       MenuIthem();
+       MenuItem();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
