@@ -5,6 +5,10 @@
 package Admin_Zayed;
 import javax.swing.JFrame;
 import Admin_Zayed.Login_Menu;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class Register_Menu extends JFrame {
     public Register_Menu() {
@@ -42,13 +46,18 @@ public class Register_Menu extends JFrame {
 
         buttonRegisterCancel.setBackground(new java.awt.Color(204, 204, 204));
         buttonRegisterCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buttonRegisterCancel.setForeground(new java.awt.Color(0, 0, 0));
         buttonRegisterCancel.setText("CANCEL");
         buttonRegisterCancel.setBorder(null);
         buttonRegisterCancel.setBorderPainted(false);
         buttonRegisterCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRegisterCancelActionPerformed(evt);
+            }
+        });
+
+        textRegisterUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textRegisterUsernameActionPerformed(evt);
             }
         });
 
@@ -140,8 +149,19 @@ public class Register_Menu extends JFrame {
     }//GEN-LAST:event_buttonRegisterCancelActionPerformed
 
     private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
-        // TODO add your handling code here:
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("Output.txt")))
+        {
+            writer.write("Hello World!");
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_buttonRegisterActionPerformed
+
+    private void textRegisterUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textRegisterUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textRegisterUsernameActionPerformed
 
     /**
      * @param args the command line arguments
