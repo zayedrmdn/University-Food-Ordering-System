@@ -4,9 +4,7 @@
  */
 package Yjun;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+
 
 public class OrderHistory extends javax.swing.JFrame {
     Order order = new Order();
@@ -119,7 +117,7 @@ public class OrderHistory extends javax.swing.JFrame {
 
         if (selectedRow != -1) {
             String food = TableOrderHistory.getValueAt(selectedRow, 0).toString();
-            double price = (double) TableOrderHistory.getValueAt(selectedRow, 1);
+            double price = (double)TableOrderHistory.getValueAt(selectedRow, 1);
 
             
             order.addItem(food,price);
