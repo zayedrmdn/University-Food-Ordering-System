@@ -95,6 +95,7 @@ Customer cc = new Customer("Name");
         String line = tFieldReviews.getText();
         cc.addReviews(line);
         cc.saveReviewsToFile(filePath);
+        JOptionPane.showMessageDialog(null, "Thank you for your review!");        
     }//GEN-LAST:event_btnReviewActionPerformed
 
 
