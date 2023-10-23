@@ -175,8 +175,8 @@ public class AcceptOrder extends javax.swing.JFrame {
        File file=new File("/Users/sepehrjokanian/Documents/Order.txt");
        File file1=new File("/Users/sepehrjokanian/Documents/Revenue.txt");
         try {
-            FileWriter fw=new FileWriter(file);
-            FileWriter fw1=new FileWriter(file1);
+            FileWriter fw=new FileWriter(file,true);
+            FileWriter fw1=new FileWriter(file1,true);
             BufferedWriter bw=new BufferedWriter(fw);
             BufferedWriter bw1=new BufferedWriter(fw1);
             for(int i=0;i<jTable2.getRowCount();i++){
@@ -185,8 +185,12 @@ public class AcceptOrder extends javax.swing.JFrame {
                     bw1.write(jTable2.getValueAt(i,1).toString()+" ");
             
             bw.newLine(); 
+            
             bw1.newLine();
             }
+            
+           
+            
             
             bw.close();
             bw1.close();

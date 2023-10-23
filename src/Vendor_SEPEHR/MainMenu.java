@@ -57,7 +57,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 204, 204));
         jButton3.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
-        jButton3.setText("MENU");
+        jButton3.setText(" MODIFY MENU");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
