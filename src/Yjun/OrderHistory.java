@@ -5,16 +5,52 @@
 package Yjun;
 
 
+import Vendor_SEPEHR.MenuItem;
+import java.io.File;
+
+import java.io.IOException;
+import java.util.List;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 
 public class OrderHistory extends javax.swing.JFrame {
+   
     
-    /**
-     * Creates new form OrderHistory
-     */
     public OrderHistory() {
         initComponents();
+        SaveToTable();
+        
     }
+    public void SaveToTable()
+    {
+        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
+        try {
+            FileReader Fread=new FileReader(file);
+            BufferedReader Bread=new BufferedReader(Fread);
+            DefaultTableModel md= (DefaultTableModel)TableOrderHistory.getModel();
+            Object[] lines=Bread.lines().toArray();
+            
+            for(int i=0;i<lines.length;i++){
+                String[] row=lines[i].toString().split(" ");
+                md.addRow(row);
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
+Order order = new Order();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,28 +82,12 @@ public class OrderHistory extends javax.swing.JFrame {
 
         TableOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Kfc",  new Double(9000.1), "Pending"},
-                {"Mcdonald",  new Double(100.0), "Pending"},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "Food", "Amount", "Status"
+                "Food", "Amount", "Status", "Reviews"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         TableOrderHistory.setColumnSelectionAllowed(true);
         TableOrderHistory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,24 +162,26 @@ public class OrderHistory extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TableOrderHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOrderHistoryMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TableOrderHistoryMouseClicked
-    Order order = new Order();
+    
     private void btnReOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReOrderActionPerformed
-        int selectedRow = TableOrderHistory.getSelectedRow();
-
-        if (selectedRow != -1) {
-            String food = TableOrderHistory.getValueAt(selectedRow, 0).toString();
-            double price = (double)TableOrderHistory.getValueAt(selectedRow, 1);
-
+        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
+        try {
+            FileWriter fw=new FileWriter(file,true);
+            BufferedWriter bw=new BufferedWriter(fw);
+            for(int i=0;i<TableOrderHistory.getRowCount();i++){
+                
+                    bw.write(TableOrderHistory.getValueAt(i,0).toString()+" "+TableOrderHistory.getValueAt(i,1).toString()+" ");
+                    
             
-            order.addItem(food,price);
-            order.saveOrderToFile("C:\\Users\\yjun0\\Documents\\Food History.txt");
-            System.out.println("Reordered: " + food + " - " + price);
-        } else {
-            System.out.println("No row selected.");
+            bw.newLine(); 
+            }
+            bw.close();
+            fw.close();
+
+            System.out.println("Order Ordered");
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnReOrderActionPerformed
 
@@ -172,6 +194,10 @@ public class OrderHistory extends javax.swing.JFrame {
         new MainPage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void TableOrderHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOrderHistoryMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableOrderHistoryMouseClicked
 
     /**
      * @param args the command line arguments

@@ -12,9 +12,9 @@ import java.util.List;
 
 
 public class Order {
-    private List<String> items;
+    private List<Object> items;
     private List<String> reviews;
-    private List<Double> prices;
+    private List<Object> prices;
     private List<String> status;
 
     public Order() {
@@ -25,13 +25,11 @@ public class Order {
     }
 
     public void saveOrderToFile(String filename) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
             for (int i = 0; i < items.size(); i++) {
                 String line = "Food:" + items.get(i) + "\nPrices:" + prices.get(i) + "\n";
                 writer.write(line);
             }
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +63,7 @@ public class Order {
 //        }
 //    }
 
-    public void addItem(String foodName, double price) {
+    public void addItem(Object foodName, Object price) {
         items.add(foodName);
         prices.add(price);
     }
@@ -101,10 +99,10 @@ public class Order {
     }
 
 
-    public List<String> getItems() {
+    public List<Object> getItems() {
         return items;
     }
-    public List<Double> getPrices() {
+    public List<Object> getPrices() {
         return prices;
     }
 

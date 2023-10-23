@@ -19,7 +19,7 @@ public class OrderStatus extends javax.swing.JFrame {
         initComponents();
         AdminClass AC = new AdminClass();
 
-        AC.centerFrameOnScreen(this);
+//        AC.centerFrameOnScreen(this);
     }
 
     /**
@@ -37,6 +37,9 @@ public class OrderStatus extends javax.swing.JFrame {
         BtnReceived = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableOrderStatus = new javax.swing.JTable();
+        btnToMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +58,38 @@ public class OrderStatus extends javax.swing.JFrame {
         jLabel3.setText("Delivering");
 
         jLabel4.setText("Delivered");
+
+        TableOrderStatus.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"O1209", null}
+            },
+            new String [] {
+                "OrderID", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TableOrderStatus.setColumnSelectionAllowed(true);
+        TableOrderStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableOrderStatusMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TableOrderStatus);
+        TableOrderStatus.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+        btnToMenu.setText("Menu");
+        btnToMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,16 +112,25 @@ public class OrderStatus extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(168, 168, 168))))
+                                .addGap(79, 79, 79)
+                                .addComponent(btnToMenu)
+                                .addGap(14, 14, 14))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BtnReceived)
                         .addGap(166, 166, 166))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(58, 58, 58)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(58, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnToMenu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JProgressINProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -94,9 +138,14 @@ public class OrderStatus extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(BtnReceived)
                 .addGap(31, 31, 31))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(136, 136, 136)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(81, Short.MAX_VALUE)))
         );
 
         pack();
@@ -107,6 +156,16 @@ public class OrderStatus extends javax.swing.JFrame {
         JProgressINProgress.setStringPainted(true);
         JProgressINProgress.getMaximum();
     }//GEN-LAST:event_BtnReceivedActionPerformed
+
+    private void TableOrderStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOrderStatusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableOrderStatusMouseClicked
+
+    private void btnToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToMenuActionPerformed
+        this.setVisible(false);
+        new MainPage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnToMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,9 +205,12 @@ public class OrderStatus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnReceived;
     private javax.swing.JProgressBar JProgressINProgress;
+    private javax.swing.JTable TableOrderStatus;
+    private javax.swing.JButton btnToMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
