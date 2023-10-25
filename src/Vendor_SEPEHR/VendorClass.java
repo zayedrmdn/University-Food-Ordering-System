@@ -1,5 +1,8 @@
 package Vendor_SEPEHR;
 
+import java.util.UUID;
+
+
 
 public class VendorClass {
     public static void MenuItem(){
@@ -22,6 +25,11 @@ public class VendorClass {
   public static void RevenueDashh(){
       RevenueDash dsh=new RevenueDash();
       dsh.setVisible(true);
+  }
+  public static String generateOrderID(){
+      long timestamp=System.currentTimeMillis();
+      int random=(int)(Math.random()*5);
+      return String.format("%d",timestamp,random,UUID.randomUUID());
   }
   
   

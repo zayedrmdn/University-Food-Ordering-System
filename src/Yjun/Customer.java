@@ -17,7 +17,7 @@ public class Customer
     }
     
     public void saveReviewsToFile(String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))) {
             for (String review : reviews) {
                 writer.write(review);
                 writer.newLine();
@@ -31,14 +31,6 @@ public class Customer
          {
         reviews.add(review);
         }
-        enum OrderStatus
-    {
-        PENDING,
-        SHIPPED,
-        DELIVERED,
-        CANCELED,
-        NOT_FOUND
-    }
     
     public Customer(String name) {
         this.name = name;
@@ -46,57 +38,7 @@ public class Customer
         this.orderHistory = new ArrayList<>(); // Initialize the orderHistory list
         this.items = new ArrayList<>(); // Initialize the items list
     }
-    
-   
-
 }
-
-//class Order
-//    {
-//        private List<String> items;
-//        private Customer.OrderStatus status;
-//        private List<Double> prices;
-//        
-//        public Order()
-//        {
-//            this.items = new ArrayList<>();;
-//            this.status = Customer.OrderStatus.PENDING;
-//            this.prices = new ArrayList<>();;
-//        }
-//        
-//       public void saveOrderToFile(String filename) {
-//        try {
-//            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-//            for (int i = 0; i < items.size(); i++) {
-//                String line = "Food:"+ items.get(i) + "\nPrices:" + prices.get(i);
-//                writer.write(line);
-//            }
-//            writer.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        }
-//         public void addItem(String foodName, double price) 
-//         {
-//        items.add(foodName);
-//        prices.add(price);
-//        }
-//        
-//        public void cancelOrder()
-//        {
-//            this.status = Customer.OrderStatus.CANCELED;
-//        }
-//        
-//         public Customer.OrderStatus getStatus() 
-//         {
-//        return status;
-//         }
-//
-//        public List<String> getItems() 
-//        {
-//            return items;
-//        }
-//    }
 
 class Item
 {

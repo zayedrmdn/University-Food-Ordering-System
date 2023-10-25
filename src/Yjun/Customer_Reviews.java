@@ -2,16 +2,37 @@ package Yjun;
 
 import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
+import java.io.FileWriter;
 
 public class Customer_Reviews extends javax.swing.JFrame {
 Customer cc = new Customer("Name");
   
     public Customer_Reviews() {
         initComponents();
+        SaveToCombo();
         } 
+    
+    public void SaveToCombo(){
+         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\yjun0\\OneDrive\\Desktop\\Order.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("order ID:")) {
+                    String orderID = line.substring(10); 
+                    CboxOrderId.addItem(orderID); 
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+
+            
     
      
         
@@ -24,7 +45,7 @@ Customer cc = new Customer("Name");
         lbReviews = new javax.swing.JLabel();
         tFieldReviews = new javax.swing.JTextField();
         btnReview = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CboxOrderId = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,36 +63,37 @@ Customer cc = new Customer("Name");
             }
         });
 
-        btnReview.setText("Show reviews");
+        btnReview.setText("Save Reviews");
         btnReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReviewActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CboxOrderId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CboxOrderIdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReview))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(lbReviews, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)))
+                .addGap(154, 154, 154)
+                .addComponent(lbReviews, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                 .addGap(180, 180, 180))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(tFieldReviews, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CboxOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tFieldReviews, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(147, 147, 147)
+                        .addComponent(btnReview)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -79,13 +101,13 @@ Customer cc = new Customer("Name");
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbReviews)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tFieldReviews, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(CboxOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tFieldReviews, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnReview)
-                .addGap(64, 64, 64))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -101,12 +123,17 @@ Customer cc = new Customer("Name");
     }//GEN-LAST:event_tFieldReviewsActionPerformed
 
     private void btnReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReviewActionPerformed
-        String filePath = "C:\\Users\\yjun0\\OneDrive - Asia Pacific University\\A.P.U\\Y2 Sem 1\\Java\\Reviews.txt"; 
-        String line = tFieldReviews.getText();
+        String filePath = "C:\\Users\\yjun0\\OneDrive\\Desktop\\Reviews.txt"; 
+        String selectedID = CboxOrderId.getSelectedItem().toString();
+        String line = tFieldReviews.getText() +"\n"+"Order ID: " +selectedID;
         cc.addReviews(line);
         cc.saveReviewsToFile(filePath);
         JOptionPane.showMessageDialog(null, "Thank you for your review!");        
     }//GEN-LAST:event_btnReviewActionPerformed
+
+    private void CboxOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CboxOrderIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CboxOrderIdActionPerformed
 
 
     public static void main(String args[]) {
@@ -142,8 +169,8 @@ Customer cc = new Customer("Name");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CboxOrderId;
     private javax.swing.JButton btnReview;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lbReviews;
     private javax.swing.JTextField tFieldReviews;
     // End of variables declaration//GEN-END:variables

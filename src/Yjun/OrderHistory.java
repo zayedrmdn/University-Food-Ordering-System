@@ -82,10 +82,10 @@ Order order = new Order();
 
         TableOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "Food", "Amount", "Status", "Reviews"
+                "Food", "Amount", "Status"
             }
         ));
         TableOrderHistory.setColumnSelectionAllowed(true);

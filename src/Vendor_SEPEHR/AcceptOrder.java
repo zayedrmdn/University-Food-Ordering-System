@@ -4,6 +4,7 @@
  */
 package Vendor_SEPEHR;
 
+import static Vendor_SEPEHR.VendorClass.generateOrderID;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +12,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Stack;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -127,21 +132,23 @@ public class AcceptOrder extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setColumnSelectionAllowed(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         jLabel2.setText("Menu");
@@ -208,6 +215,7 @@ public class AcceptOrder extends javax.swing.JFrame {
             FileWriter fw1=new FileWriter(file1,true);
             BufferedWriter bw=new BufferedWriter(fw);
             BufferedWriter bw1=new BufferedWriter(fw1);
+            String orderID=generateOrderID();
             for(int i=0;i<jTable2.getRowCount();i++){
                 
                     bw.write(jTable2.getValueAt(i,0).toString()+" ");
@@ -217,7 +225,13 @@ public class AcceptOrder extends javax.swing.JFrame {
             
             bw1.newLine();
             }
-            
+            Date currentTime=new Date();
+            SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedTime=dateFormat.format(currentTime);
+            bw.write("order ID:"+orderID+" Ordered by Customer at:"+formattedTime);
+            bw.newLine();
+           
+           
            
             
             
