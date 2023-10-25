@@ -11,11 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Stack;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -26,6 +24,27 @@ public class AcceptOrder extends javax.swing.JFrame {
    
     public AcceptOrder() {
         initComponents();
+        SaveToTable();
+    }
+    
+    public void SaveToTable()
+    {
+        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
+        try {
+            FileReader Fread=new FileReader(file);
+            BufferedReader Bread=new BufferedReader(Fread);
+            DefaultTableModel md= (DefaultTableModel)jTable2.getModel();
+            Object[] lines=Bread.lines().toArray();
+            
+            for(int i=0;i<lines.length;i++){
+                String[] row=lines[i].toString().split(" ");
+                md.addRow(row);
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,13 +125,23 @@ public class AcceptOrder extends javax.swing.JFrame {
             new String [] {
                 "food", "price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setColumnSelectionAllowed(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(jTable2);
+        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         jLabel2.setText("Menu");
