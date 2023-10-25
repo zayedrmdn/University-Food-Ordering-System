@@ -4,6 +4,13 @@
  */
 package Vendor_SEPEHR;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author sepehrjokanian
@@ -38,6 +45,8 @@ public class StatusOrder extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        ProgressBar.setBackground(new java.awt.Color(255, 255, 255));
 
         BackButton.setBackground(new java.awt.Color(255, 255, 0));
         BackButton.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
@@ -130,6 +139,38 @@ public class StatusOrder extends javax.swing.JFrame {
        int currentValue=ProgressBar.getValue();
        int newValue=currentValue+50;
        ProgressBar.setValue(newValue);
+       
+       
+       if(newValue==50){
+           File file=new File("/Users/sepehrjokanian/Documents/Status.txt");
+           try {
+               FileWriter fw=new FileWriter(file,true);
+               BufferedWriter bw=new BufferedWriter(fw);
+               bw.write(" :Status Order is:Progressing");
+               bw.newLine();
+               bw.close();
+               fw.close();
+               
+           } catch (IOException ex) {
+               Logger.getLogger(StatusOrder.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+       }
+       else if(newValue==100){
+           File file=new File("/Users/sepehrjokanian/Documents/Status.txt");
+           try {
+               FileWriter fw=new FileWriter(file,true);
+               BufferedWriter bw=new BufferedWriter(fw);
+               bw.write(" :Status Order is:Delivered");
+               bw.newLine();
+               bw.close();
+               fw.close();
+               
+           } catch (IOException ex) {
+               Logger.getLogger(StatusOrder.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+       }
     }//GEN-LAST:event_buttonNextActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
