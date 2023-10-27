@@ -4,10 +4,15 @@
  */
 package Vendor_SEPEHR;
 
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -125,7 +130,8 @@ public class RevenueDash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         File file=new File("/Users/sepehrjokanian/Documents/Revenue.txt");
+                                        
+        File file=new File("/Users/sepehrjokanian/Documents/Revenue.txt");
         try {
             FileReader Fread=new FileReader(file);
             BufferedReader Bread=new BufferedReader(Fread);
@@ -138,9 +144,11 @@ public class RevenueDash extends javax.swing.JFrame {
             }
             
             
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
         }
+ 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -184,4 +192,16 @@ public class RevenueDash extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private boolean isSameQuarter(Date date, Date currentDate) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private boolean isSameMonth(Date date, Date currentDate) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private boolean isSameDay(Date date, Date currentDate) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

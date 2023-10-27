@@ -146,7 +146,7 @@ public class StatusOrder extends javax.swing.JFrame {
            try {
                FileWriter fw=new FileWriter(file,true);
                BufferedWriter bw=new BufferedWriter(fw);
-               bw.write(" :Status Order is:Progressing");
+               bw.write(" :New Status Has Changed To:Progressing");
                bw.newLine();
                bw.close();
                fw.close();
@@ -161,7 +161,7 @@ public class StatusOrder extends javax.swing.JFrame {
            try {
                FileWriter fw=new FileWriter(file,true);
                BufferedWriter bw=new BufferedWriter(fw);
-               bw.write(" :Status Order is:Delivered");
+               bw.write(" :New Status Has Changed To:Delivered");
                bw.newLine();
                bw.close();
                fw.close();

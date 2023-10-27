@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
+import java.io.*;
 
 
 
@@ -210,10 +211,14 @@ public class AcceptOrder extends javax.swing.JFrame {
             }
             Date currentTime=new Date();
             SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat date=new SimpleDateFormat("yyyy-MM_dd");
             String formattedTime=dateFormat.format(currentTime);
+            String ft=date.format(currentTime);
             bw.write("order ID:"+orderID+" Date/Time:"+formattedTime);
             bw.newLine();
             bw.close();
+            bw1.write("Date:"+ft);
+            bw1.newLine();
             bw1.close();
             fw.close();
             fw1.close();

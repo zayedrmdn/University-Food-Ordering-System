@@ -1,5 +1,7 @@
 package Vendor_SEPEHR;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -31,7 +33,4 @@ public class VendorClass {
       int random=(int)(Math.random()*5);
       return String.format("%d",timestamp,random,UUID.randomUUID());
   }
-  
-  
 }
- 

@@ -219,6 +219,7 @@ public class MenuItem extends javax.swing.JFrame {
      //To remove
      Food.setText("");
      Price.setText("");
+     
         
     }//GEN-LAST:event_AddActionPerformed
 
