@@ -5,6 +5,9 @@
 package Yjun;
 
 import Admin_Zayed.AdminClass;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -17,9 +20,25 @@ public class OrderStatus extends javax.swing.JFrame {
      */
     public OrderStatus() {
         initComponents();
+        SaveToCombo();
         AdminClass AC = new AdminClass();
 
 //        AC.centerFrameOnScreen(this);
+    }
+    
+      public void SaveToCombo(){
+         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\yjun0\\OneDrive\\Desktop\\Status.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Order ID:")) {
+                    String orderID = line.substring(10); 
+                    cboxOrderID.addItem(orderID); 
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -34,55 +53,30 @@ public class OrderStatus extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         JProgressINProgress = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
-        BtnReceived = new javax.swing.JButton();
+        BtnGetStatus = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TableOrderStatus = new javax.swing.JTable();
         btnToMenu = new javax.swing.JButton();
+        cboxOrderID = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Serif", 2, 18)); // NOI18N
         jLabel1.setText("Order Status");
 
-        jLabel2.setText("Prepared");
+        jLabel2.setText("Preparing");
 
-        BtnReceived.setText("Order Received");
-        BtnReceived.addActionListener(new java.awt.event.ActionListener() {
+        BtnGetStatus.setText("Get Status");
+        BtnGetStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnReceivedActionPerformed(evt);
+                BtnGetStatusActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Delivering");
+        jLabel3.setText("Progressing");
 
         jLabel4.setText("Delivered");
-
-        TableOrderStatus.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"O1209", null}
-            },
-            new String [] {
-                "OrderID", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        TableOrderStatus.setColumnSelectionAllowed(true);
-        TableOrderStatus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableOrderStatusMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(TableOrderStatus);
-        TableOrderStatus.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         btnToMenu.setText("Menu");
         btnToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +85,8 @@ public class OrderStatus extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("OrderID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,14 +94,12 @@ public class OrderStatus extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(123, 123, 123)
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboxOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(JProgressINProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,15 +108,19 @@ public class OrderStatus extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(79, 79, 79)
                                 .addComponent(btnToMenu)
-                                .addGap(14, 14, 14))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BtnReceived)
-                        .addGap(166, 166, 166))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(58, 58, 58)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(58, Short.MAX_VALUE)))
+                                .addGap(14, 14, 14)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(BtnGetStatus))
+                                    .addGap(109, 109, 109)))
+                            .addComponent(jLabel4)
+                            .addContainerGap()))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,31 +133,37 @@ public class OrderStatus extends javax.swing.JFrame {
                 .addComponent(JProgressINProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addComponent(BtnReceived)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cboxOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(BtnGetStatus)
                 .addGap(31, 31, 31))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(136, 136, 136)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(81, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnReceivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReceivedActionPerformed
-        JProgressINProgress.setValue(100);
-        JProgressINProgress.setStringPainted(true);
-        JProgressINProgress.getMaximum();
-    }//GEN-LAST:event_BtnReceivedActionPerformed
+    private void BtnGetStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGetStatusActionPerformed
+         String selectedOrder = (String) cboxOrderID.getSelectedItem();
 
-    private void TableOrderStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOrderStatusMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TableOrderStatusMouseClicked
+    if (selectedOrder.contains("Status Order is:")) {
+        if (selectedOrder.contains("Preparing")) {
+            JProgressINProgress.setValue(0);
+        } else if (selectedOrder.contains("Progressing")) {
+            JProgressINProgress.setValue(50);
+        } else if (selectedOrder.contains("Delivered")) {
+            JProgressINProgress.setValue(100);
+        }
+    } else {
+        System.out.println("No Status");
+    }
+    JProgressINProgress.setStringPainted(true);
+    }//GEN-LAST:event_BtnGetStatusActionPerformed
 
     private void btnToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToMenuActionPerformed
         this.setVisible(false);
@@ -203,14 +207,14 @@ public class OrderStatus extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnReceived;
+    private javax.swing.JButton BtnGetStatus;
     private javax.swing.JProgressBar JProgressINProgress;
-    private javax.swing.JTable TableOrderStatus;
     private javax.swing.JButton btnToMenu;
+    private javax.swing.JComboBox<String> cboxOrderID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

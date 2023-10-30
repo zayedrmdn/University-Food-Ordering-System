@@ -210,11 +210,14 @@ public class AcceptOrder extends javax.swing.JFrame {
     private void SaveOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveOrderActionPerformed
        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Order.txt");
        File file1=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Revenue.txt");
+       File file2=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Status.txt");
         try {
             FileWriter fw=new FileWriter(file,true);
             FileWriter fw1=new FileWriter(file1,true);
+            FileWriter fw2=new FileWriter(file2,true);
             BufferedWriter bw=new BufferedWriter(fw);
             BufferedWriter bw1=new BufferedWriter(fw1);
+            BufferedWriter bw2=new BufferedWriter(fw2);
             String orderID=generateOrderID();
             for(int i=0;i<jTable2.getRowCount();i++){
                 
@@ -228,17 +231,15 @@ public class AcceptOrder extends javax.swing.JFrame {
             Date currentTime=new Date();
             SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formattedTime=dateFormat.format(currentTime);
-            bw.write("order ID:"+orderID+" Ordered by Customer at:"+formattedTime);
+            bw.write("order ID:"+orderID+" Date/Time:"+formattedTime);
             bw.newLine();
-           
-           
-           
-            
-            
             bw.close();
             bw1.close();
             fw.close();
             fw1.close();
+            bw2.write("Order ID:"+orderID+":Status Order is:Preparing ");
+            bw2.close();
+            fw2.close();
             System.out.println("Order Received");
             
         } catch (IOException ex) {

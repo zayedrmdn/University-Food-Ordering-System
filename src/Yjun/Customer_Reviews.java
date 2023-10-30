@@ -2,11 +2,9 @@ package Yjun;
 
 import javax.swing.*;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.File;
-import java.io.FileWriter;
+
 
 public class Customer_Reviews extends javax.swing.JFrame {
 Customer cc = new Customer("Name");

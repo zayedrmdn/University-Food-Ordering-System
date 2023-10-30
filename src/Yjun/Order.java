@@ -46,22 +46,6 @@ public class Order {
         }
     }
     
-//    public void deleteOrderFromFile(String filename) {
-//        try {
-//            File file = new File(filename);
-//            if (items.exists()) {
-//                if (file.delete()) {
-//                    System.out.println("Order file deleted successfully.");
-//                } else {
-//                    System.out.println("Failed to delete the order file.");
-//                }
-//            } else {
-//                System.out.println("Order file does not exist.");
-//            }
-//        } catch (SecurityException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void addItem(Object foodName, Object price) {
         items.add(foodName);
@@ -76,27 +60,7 @@ public class Order {
         status.add("Placed");
     }
 
-    public void cancelOrder() {
-        if (status.isEmpty() || !status.get(status.size() - 1).equals("Placed")) {
-            System.out.println("Cannot cancel an order that has not been placed.");
-            return;
-        }
-        items.clear();
-        prices.clear();
-        status.add("Cancelled");
-    }
 
-    public void addReview(String review) {
-        reviews.add(review);
-    }
-
-    public void updateOrderStatus(String newStatus) {
-        if (!status.isEmpty() && status.get(status.size() - 1).equals("Placed")) {
-            status.add(newStatus);
-        } else {
-            System.out.println("Order status can only be updated for placed orders.");
-        }
-    }
 
 
     public List<Object> getItems() {
