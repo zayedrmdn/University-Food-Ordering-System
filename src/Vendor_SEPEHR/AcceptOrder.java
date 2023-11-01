@@ -236,11 +236,13 @@ public class AcceptOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveOrderActionPerformed
 
     private void ShowMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowMenuActionPerformed
-         File file=new File("/Users/sepehrjokanian/Documents/Menu.txt");
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Vendor_SEPEHR/resources/Menu.txt");
         try {
             FileReader Fread=new FileReader(file);
             BufferedReader Bread=new BufferedReader(Fread);
             DefaultTableModel md= (DefaultTableModel)jTable1.getModel();
+            md.setRowCount(0);
             Object[] lines=Bread.lines().toArray();
             
             for(int i=0;i<lines.length;i++){
