@@ -6,6 +6,7 @@ package Yjun;
 
 import Admin_Zayed.AdminClass;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -27,7 +28,9 @@ public class OrderStatus extends javax.swing.JFrame {
     }
     
       public void SaveToCombo(){
-         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\yjun0\\OneDrive\\Desktop\\Status.txt"))) {
+         String workingDirectory = System.getProperty("user.dir");
+         File file = new File(workingDirectory + "/src/Yjun/resources/Status.txt");
+         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("Order ID:")) {
