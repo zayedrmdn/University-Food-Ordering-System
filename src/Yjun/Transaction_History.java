@@ -4,6 +4,15 @@
  */
 package Yjun;
 
+import Vendor_SEPEHR.MenuItem;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Yjun
@@ -16,6 +25,28 @@ public class Transaction_History extends javax.swing.JFrame {
     public Transaction_History() {
         initComponents();
     }
+    
+    public void SaveToTable()
+    {
+        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
+        try {
+            FileReader Fread=new FileReader(file);
+            BufferedReader Bread=new BufferedReader(Fread);
+            DefaultTableModel md= (DefaultTableModel)TableTransacHistory.getModel();
+            Object[] lines=Bread.lines().toArray();
+            
+            for(int i=0;i<lines.length;i++){
+                String[] row=lines[i].toString().split(" ");
+                md.addRow(row);
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
