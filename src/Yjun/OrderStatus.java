@@ -59,6 +59,7 @@ public class OrderStatus extends javax.swing.JFrame {
         btnToMenu = new javax.swing.JButton();
         cboxOrderID = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +87,8 @@ public class OrderStatus extends javax.swing.JFrame {
         });
 
         jLabel5.setText("OrderID:");
+
+        jButton1.setText("Cancel Order");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,12 +118,17 @@ public class OrderStatus extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
                                         .addComponent(BtnGetStatus))
                                     .addGap(109, 109, 109)))
                             .addComponent(jLabel4)
                             .addContainerGap()))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +150,9 @@ public class OrderStatus extends javax.swing.JFrame {
                     .addComponent(cboxOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(BtnGetStatus)
-                .addGap(31, 31, 31))
+                .addGap(2, 2, 2)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
@@ -211,6 +221,7 @@ public class OrderStatus extends javax.swing.JFrame {
     private javax.swing.JProgressBar JProgressINProgress;
     private javax.swing.JButton btnToMenu;
     private javax.swing.JComboBox<String> cboxOrderID;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

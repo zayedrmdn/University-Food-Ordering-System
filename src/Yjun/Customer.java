@@ -32,7 +32,7 @@ public class Customer
         reviews.add(review);
         }
     
-    public Customer(String name) {
+    public Customer() {
         this.name = name;
         this.reviews = new ArrayList<>(); // Initialize the reviews list
         this.orderHistory = new ArrayList<>(); // Initialize the orderHistory list

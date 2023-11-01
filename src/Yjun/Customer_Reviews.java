@@ -7,7 +7,7 @@ import java.io.IOException;
 
 
 public class Customer_Reviews extends javax.swing.JFrame {
-Customer cc = new Customer("Name");
+Customer cc = new Customer();
   
     public Customer_Reviews() {
         initComponents();
