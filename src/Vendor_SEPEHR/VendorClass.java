@@ -33,4 +33,8 @@ public class VendorClass {
       int random=(int)(Math.random()*5);
       return String.format("%d",timestamp,random,UUID.randomUUID());
   }
+  public static void Cancelellation(){
+      Cancellation cn=new Cancellation();
+      cn.setVisible(true);
+  }
 }
