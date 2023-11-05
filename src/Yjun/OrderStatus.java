@@ -15,34 +15,17 @@ import java.io.IOException;
  * @author yjun0
  */
 public class OrderStatus extends javax.swing.JFrame {
-
+    Customer cc = new Customer();
     /**
      * Creates new form OrderStatus
      */
     public OrderStatus() {
         initComponents();
-        SaveToCombo();
+        cc.SaveToCombo(cboxOrderID);
         AdminClass AC = new AdminClass();
-
-//        AC.centerFrameOnScreen(this);
     }
     
-      public void SaveToCombo(){
-         String workingDirectory = System.getProperty("user.dir");
-         File file = new File(workingDirectory + "/src/Yjun/resources/Status.txt");
-         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("Order ID:")) {
-                    String orderID = line.substring(10); 
-                    cboxOrderID.addItem(orderID); 
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
