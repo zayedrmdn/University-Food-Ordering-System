@@ -1,23 +1,52 @@
 package Yjun;
+
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Customer 
 {
-   private String name;
-    private List<Order> orderHistory;
-    private List<String> reviews;
-    private List<Item> items;
-   
-    public List<Item> getItems() {
-        return items;
+ private List<String> reviews;
+ 
+ public Customer()
+ {
+     this.reviews = new ArrayList<>();
+ }
+
+ 
+ public void SaveToCombo(JComboBox<String> comboBox){
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Order.txt");
+
+         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("order ID:")) {
+                    String orderID = line.substring(10); 
+                    comboBox.addItem(orderID); 
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    
-    public void saveReviewsToFile(String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))) {
+     public void addReviews(String review) 
+         {
+        reviews.add(review);
+        }
+   public void saveReviewsToFile() {
+       String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Reviews.txt");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,true))) {
             for (String review : reviews) {
                 writer.write(review);
                 writer.newLine();
@@ -27,35 +56,27 @@ public class Customer
         }
     }
 
-    public void addReviews(String review) 
-         {
-        reviews.add(review);
+   public void ViewMenu(JTable table)
+   {
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Menu.txt");
+        try {
+            FileReader Fread=new FileReader(file);
+            BufferedReader Bread=new BufferedReader(Fread);
+            DefaultTableModel md= (DefaultTableModel)table.getModel();
+            Object[] lines=Bread.lines().toArray();
+            
+            for(int i=0;i<lines.length;i++){
+                String[] row=lines[i].toString().split(" ");
+                md.addRow(row);
+            }
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    
-    public Customer() {
-        this.name = name;
-        this.reviews = new ArrayList<>(); // Initialize the reviews list
-        this.orderHistory = new ArrayList<>(); // Initialize the orderHistory list
-        this.items = new ArrayList<>(); // Initialize the items list
-    }
-}
-
-class Item
-{
-     private String name;
-    private double price;
-
-    public Item(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-}
+   
+   }
+   
 }
 
