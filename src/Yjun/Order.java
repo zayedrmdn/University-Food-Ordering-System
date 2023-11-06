@@ -37,7 +37,7 @@ public class Order {
     {
         String workingDirectory = System.getProperty("user.dir");
         File file = new File(workingDirectory + "/src/Yjun/resources/Status.txt");
-        File tempFile = new File(workingDirectory + "/src/Yjun/resources/TempOrder.txt");
+        File tempFile = new File(workingDirectory + "/src/Yjun/resources/TempStatus.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file)); BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
@@ -46,12 +46,13 @@ public class Order {
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("Order ID:") && line.substring(10).equals(selectedOrderID)) {
                     String nextLine = reader.readLine(); 
-                    if (!selectedOrderID.contains("Progressing") || !selectedOrderID.contains("Delivered")) {
+                    if (!selectedOrderID.contains("Progressing")){
+                        if (!selectedOrderID.contains("Delivered")){
                         continue;
+                        }
                         
                     } else {
-   
-                        System.out.println("Order with status 'Progressing' or 'Delivered' cannot be canceled.");
+                        System.out.println("Order with status 'Progressing' or Delivered' cannot be canceled.");
                         writer.write(line);
                         writer.newLine();
                         writer.write(nextLine);
@@ -66,8 +67,9 @@ public class Order {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
 
-
+        if (!selectedOrderID.contains("Progressing") && !selectedOrderID.contains("Delivered")){
         if (file.delete() && tempFile.renameTo(file)) {
 
             comboBox.removeItem(selectedOrderID);
@@ -75,7 +77,7 @@ public class Order {
             System.out.println("Failed to cancel order. You may need to manually replace the files.");
         }
     }
-    
+    }
     public void SaveToTable(JTable table)
     {
          String workingDirectory = System.getProperty("user.dir");
