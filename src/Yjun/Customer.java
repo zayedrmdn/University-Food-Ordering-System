@@ -17,6 +17,7 @@ public class Customer
 {
  private List<String> reviews;
  
+ 
  public Customer()
  {
      this.reviews = new ArrayList<>();
@@ -77,6 +78,23 @@ public class Customer
         }
    
    }
+   
+    public void SaveStatusToCombo(JComboBox<String> comboBox) {
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Status.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Order ID:")) {
+                    String orderID = line.substring(10);
+                    comboBox.addItem(orderID);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
    
 }
 
