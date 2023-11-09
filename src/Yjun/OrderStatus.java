@@ -4,11 +4,6 @@
  */
 package Yjun;
 
-import Admin_Zayed.AdminClass;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 /**
  *
@@ -16,13 +11,13 @@ import java.io.IOException;
  */
 public class OrderStatus extends javax.swing.JFrame {
     Customer cc = new Customer();
+    Order or = new Order();
     /**
      * Creates new form OrderStatus
      */
     public OrderStatus() {
         initComponents();
-        cc.SaveToCombo(cboxOrderID);
-        AdminClass AC = new AdminClass();
+        cc.SaveStatusToCombo(cboxOrderID);
     }
     
 
@@ -45,7 +40,7 @@ public class OrderStatus extends javax.swing.JFrame {
         btnToMenu = new javax.swing.JButton();
         cboxOrderID = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCancelOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +69,12 @@ public class OrderStatus extends javax.swing.JFrame {
 
         jLabel5.setText("OrderID:");
 
-        jButton1.setText("Cancel Order");
+        btnCancelOrder.setText("Cancel Order");
+        btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +113,7 @@ public class OrderStatus extends javax.swing.JFrame {
                             .addContainerGap()))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnCancelOrder)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,7 +137,7 @@ public class OrderStatus extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(BtnGetStatus)
                 .addGap(2, 2, 2)
-                .addComponent(jButton1)
+                .addComponent(btnCancelOrder)
                 .addContainerGap())
         );
 
@@ -166,6 +166,11 @@ public class OrderStatus extends javax.swing.JFrame {
         new MainPage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnToMenuActionPerformed
+
+    private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
+        String selectedOrder = (String) cboxOrderID.getSelectedItem();
+        or.CancelOrder(cboxOrderID,selectedOrder);
+    }//GEN-LAST:event_btnCancelOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,9 +210,9 @@ public class OrderStatus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnGetStatus;
     private javax.swing.JProgressBar JProgressINProgress;
+    private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnToMenu;
     private javax.swing.JComboBox<String> cboxOrderID;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

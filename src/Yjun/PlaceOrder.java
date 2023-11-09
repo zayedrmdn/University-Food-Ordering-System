@@ -4,25 +4,13 @@
  */
 package Yjun;
 
-import Vendor_SEPEHR.MenuItem;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author yjun0
  */
 public class PlaceOrder extends javax.swing.JFrame {
 Order order = new Order();
+Customer cc =new Customer();
 
     /**
      * Creates new form PlaceOrder
@@ -121,25 +109,7 @@ Order order = new Order();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
-        try {
-            FileWriter fw=new FileWriter(file,true);
-            BufferedWriter bw=new BufferedWriter(fw);
-            for(int i=0;i<Menu.getRowCount();i++){
-                
-                    bw.write(Menu.getValueAt(i,0).toString()+" "+Menu.getValueAt(i,1).toString()+" ");
-                    
-            
-            bw.newLine(); 
-            }
-            bw.close();
-            fw.close();
-
-            System.out.println("Order Ordered");
-            
-        } catch (IOException ex) {
-            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       order.saveOrderToFile(Menu);
     }//GEN-LAST:event_btnOrderActionPerformed
 
     private void btnToHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToHistoryActionPerformed
@@ -148,22 +118,7 @@ Order order = new Order();
     }//GEN-LAST:event_btnToHistoryActionPerformed
 
     private void btnShowMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMenuActionPerformed
-        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Menu.txt");
-        try {
-            FileReader Fread=new FileReader(file);
-            BufferedReader Bread=new BufferedReader(Fread);
-            DefaultTableModel md= (DefaultTableModel)Menu.getModel();
-            Object[] lines=Bread.lines().toArray();
-            
-            for(int i=0;i<lines.length;i++){
-                String[] row=lines[i].toString().split(" ");
-                md.addRow(row);
-            }
-            
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       cc.ViewMenu(Menu);
     }//GEN-LAST:event_btnShowMenuActionPerformed
 
     /**

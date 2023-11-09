@@ -5,52 +5,14 @@
 package Yjun;
 
 
-import Vendor_SEPEHR.MenuItem;
-import java.io.File;
-
-import java.io.IOException;
-import java.util.List;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-
-
-
 public class OrderHistory extends javax.swing.JFrame {
-   
+   Order or = new Order();
     
     public OrderHistory() {
         initComponents();
-        SaveToTable();
-        
-    }
-    public void SaveToTable()
-    {
-        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
-        try {
-            FileReader Fread=new FileReader(file);
-            BufferedReader Bread=new BufferedReader(Fread);
-            DefaultTableModel md= (DefaultTableModel)TableOrderHistory.getModel();
-            Object[] lines=Bread.lines().toArray();
-            
-            for(int i=0;i<lines.length;i++){
-                String[] row=lines[i].toString().split(" ");
-                md.addRow(row);
-            }
-            
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        or.SaveToTable(TableOrderHistory);
     }
     
-
-Order order = new Order();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +45,7 @@ Order order = new Order();
 
             },
             new String [] {
-                "Food", "Amount"
+                "Food", "Amount", "Date & Time"
             }
         ));
         TableOrderHistory.setColumnSelectionAllowed(true);
@@ -112,15 +74,15 @@ Order order = new Order();
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnReOrder))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 48, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addComponent(lblOrder_History, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(btnMenu)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +91,9 @@ Order order = new Order();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOrder_History)
                     .addComponent(btnMenu))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnReOrder)
                 .addGap(14, 14, 14))
         );
@@ -143,25 +105,7 @@ Order order = new Order();
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnReOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReOrderActionPerformed
-        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
-        try {
-            FileWriter fw=new FileWriter(file,true);
-            BufferedWriter bw=new BufferedWriter(fw);
-            for(int i=0;i<TableOrderHistory.getRowCount();i++){
-                
-                    bw.write(TableOrderHistory.getValueAt(i,0).toString()+" "+TableOrderHistory.getValueAt(i,1).toString()+" ");
-                    
-            
-            bw.newLine(); 
-            }
-            bw.close();
-            fw.close();
-
-            System.out.println("Order Ordered");
-            
-        } catch (IOException ex) {
-            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        or.saveOrderToFile(TableOrderHistory);
     }//GEN-LAST:event_btnReOrderActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
