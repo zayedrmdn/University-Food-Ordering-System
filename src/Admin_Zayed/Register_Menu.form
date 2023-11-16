@@ -36,19 +36,19 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="textRegisterUsername" max="32767" attributes="0"/>
-                          <Component id="labelRegisterUsername" min="-2" pref="68" max="-2" attributes="0"/>
-                          <Component id="textRegisterPassword" alignment="0" pref="234" max="32767" attributes="0"/>
-                          <Component id="labelRegisterPassword" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
-                          <Component id="labelRegisterRole" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
-                          <Component id="comboRegisterRole" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textUsername" max="32767" attributes="0"/>
+                          <Component id="labelUsername" min="-2" pref="68" max="-2" attributes="0"/>
+                          <Component id="textPassword" alignment="0" pref="234" max="32767" attributes="0"/>
+                          <Component id="labelPassword" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
+                          <Component id="labelRole" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
+                          <Component id="comboRole" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buttonRegister" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="buttonRegisterCancel" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="buttonCancel" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -62,21 +62,21 @@
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="labelRegister" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="labelRegisterUsername" min="-2" max="-2" attributes="0"/>
+              <Component id="labelUsername" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="textRegisterUsername" min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="textUsername" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="labelRegisterPassword" min="-2" max="-2" attributes="0"/>
+              <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="textRegisterPassword" min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="textPassword" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="labelRegisterRole" min="-2" max="-2" attributes="0"/>
+              <Component id="labelRole" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="comboRegisterRole" min="-2" max="-2" attributes="0"/>
+              <Component id="comboRole" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="57" max="32767" attributes="0"/>
               <Component id="buttonRegister" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="buttonRegisterCancel" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="buttonCancel" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -92,7 +92,7 @@
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonRegisterCancel">
+    <Component class="javax.swing.JButton" name="buttonCancel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -107,32 +107,32 @@
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRegisterCancelActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="textRegisterUsername">
+    <Component class="javax.swing.JTextField" name="textUsername">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textRegisterUsernameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textUsernameActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelRegisterUsername">
+    <Component class="javax.swing.JLabel" name="labelUsername">
       <Properties>
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textRegisterPassword">
+    <Component class="javax.swing.JTextField" name="textPassword">
     </Component>
-    <Component class="javax.swing.JLabel" name="labelRegisterPassword">
+    <Component class="javax.swing.JLabel" name="labelPassword">
       <Properties>
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelRegisterRole">
+    <Component class="javax.swing.JLabel" name="labelRole">
       <Properties>
         <Property name="text" type="java.lang.String" value="Role"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboRegisterRole">
+    <Component class="javax.swing.JComboBox" name="comboRole">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
