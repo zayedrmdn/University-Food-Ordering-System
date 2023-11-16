@@ -65,8 +65,13 @@ public class Register_Menu extends JFrame {
 
         labelRole.setText("Role");
 
-        comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select the role", "Customer", "Vendor", "Delivery Runner", " " }));
+        comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select the role", "Customer", "Vendor", "Delivery Runner", "Admin" }));
         comboRole.setToolTipText("");
+        comboRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboRoleActionPerformed(evt);
+            }
+        });
 
         buttonRegister.setBackground(new java.awt.Color(255, 153, 51));
         buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -175,6 +180,10 @@ public class Register_Menu extends JFrame {
     private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textUsernameActionPerformed
+
+    private void comboRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboRoleActionPerformed
 
     /**
      * @param args the command line arguments

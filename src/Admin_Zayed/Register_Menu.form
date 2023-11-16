@@ -140,11 +140,14 @@
             <StringItem index="1" value="Customer"/>
             <StringItem index="2" value="Vendor"/>
             <StringItem index="3" value="Delivery Runner"/>
-            <StringItem index="4" value=" "/>
+            <StringItem index="4" value="Admin"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboRoleActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
