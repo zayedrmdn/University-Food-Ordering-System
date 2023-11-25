@@ -13,7 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class Customer 
+public class Customer extends Order
 {
  private List<String> reviews;
  
