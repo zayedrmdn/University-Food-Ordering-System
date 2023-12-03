@@ -10,8 +10,7 @@ package Yjun;
  * @author yjun0
  */
 public class OrderStatus extends javax.swing.JFrame {
-    Customer cc = new Customer();
-    Order or = new Order();
+    Customer cc = new Customer("john",1000);
     /**
      * Creates new form OrderStatus
      */
@@ -169,7 +168,7 @@ public class OrderStatus extends javax.swing.JFrame {
 
     private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
         String selectedOrder = (String) cboxOrderID.getSelectedItem();
-        or.CancelOrder(cboxOrderID,selectedOrder);
+        cc.CancelOrder(cboxOrderID,selectedOrder);
     }//GEN-LAST:event_btnCancelOrderActionPerformed
 
     /**

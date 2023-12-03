@@ -6,11 +6,11 @@ package Yjun;
 
 
 public class OrderHistory extends javax.swing.JFrame {
-   Order or = new Order();
+   Customer cc = new Customer("John",1000);
     
     public OrderHistory() {
         initComponents();
-        or.SaveToTable(TableOrderHistory);
+        cc.SaveToTable(TableOrderHistory);
     }
     
     /**
@@ -105,7 +105,17 @@ public class OrderHistory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnReOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReOrderActionPerformed
-        or.saveOrderToFile(TableOrderHistory);
+        cc.saveOrderToFile(TableOrderHistory);
+        int selectedRow = TableOrderHistory.getSelectedRow();
+
+    if (selectedRow != -1) {
+        Object foodName = TableOrderHistory.getValueAt(selectedRow, 0);
+        Object price = TableOrderHistory.getValueAt(selectedRow, 1);
+
+        cc.addItem(foodName, price);
+    } else {
+        System.err.println("No row selected.");
+    }
     }//GEN-LAST:event_btnReOrderActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

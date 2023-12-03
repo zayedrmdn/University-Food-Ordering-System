@@ -1,6 +1,6 @@
 package Yjun;
 
-
+import java.io.Serializable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,47 +9,33 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class Customer extends Order
+public class Customer extends Order implements Serializable
 {
+ private static final long serialVersionUID = 1L;
  private List<String> reviews;
- 
- 
- public Customer()
- {
-     this.reviews = new ArrayList<>();
- }
-
- 
- public void SaveToCombo(JComboBox<String> comboBox){
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory + "/src/Yjun/resources/Order.txt");
-
-         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("order ID:")) {
-                    String orderID = line.substring(10); 
-                    comboBox.addItem(orderID); 
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+ private String name;
+ private double credit;
+   
+    public Customer(String name, double credit) {
+        this.name = name;
+        this.credit = credit;
+        this.reviews = new ArrayList<>();
     }
+ 
      public void addReviews(String review) 
          {
         reviews.add(review);
         }
-   public void saveReviewsToFile() {
-       String workingDirectory = System.getProperty("user.dir");
+    public void saveReviewsToFile() {
+        String workingDirectory = System.getProperty("user.dir");
         File file = new File(workingDirectory + "/src/Yjun/resources/Reviews.txt");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,true))) {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             for (String review : reviews) {
-                writer.write(review);
+                writer.write("Customer: " + name + ", Review: " + review);
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -78,23 +64,15 @@ public class Customer extends Order
         }
    
    }
-   
-    public void SaveStatusToCombo(JComboBox<String> comboBox) {
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory + "/src/Yjun/resources/Status.txt");
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("Order ID:")) {
-                    String orderID = line.substring(10);
-                    comboBox.addItem(orderID);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    
+    public String getName() {
+        return name;
     }
+
+    public double getCredit() {
+        return credit;
+    }
+
    
 }
 
