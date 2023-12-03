@@ -2,6 +2,8 @@ package Admin_Zayed;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.JDialog;
+import java.io.*;
+import javax.swing.*;
 
 
 
@@ -177,8 +179,63 @@ public class Login_Menu extends JDialog {
     }//GEN-LAST:event_textUsernameActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        //Button
-        System.out.println(textUsername.getText() + "\n" + textPassword.getText());
+        //buttonLogin
+        String username = textUsername.getText();
+        String password = textPassword.getText();
+        
+        String workingDirectory = System.getProperty("user.dir");
+        File filepath = new File(workingDirectory + "/src/Admin_Zayed/resources/Accounts.txt");
+        
+        try 
+        {
+            BufferedReader reader = new BufferedReader(new FileReader(filepath));
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                String[] parts = line.split(",");
+                if (parts.length >= 3)
+                {
+                    String savedUsername = parts[0];
+                    String savedPassword = parts[1];
+                    String savedRole = parts [2];
+                    
+                    if(username.equals(savedUsername) && password.equals(savedPassword))
+                    {
+                        switch(savedRole)
+                        {
+                            case "Customer":
+                                this.dispose();
+                                new Yjun.MainPage().setVisible(true);
+                                break;
+                                
+                            case "Vendor":
+                                this.dispose();
+                                new Vendor_SEPEHR.MainMenu().setVisible(true);
+                                break;
+                                
+                            case "Delivery Runner":
+                                this.dispose();
+                                new Runner_Ebrahim.RunnerDashboard().setVisible(true);
+                                break;
+                            
+                            case "Admin":
+                                this.dispose();
+                                new Admin_Zayed.Admin_Menu().setVisible(true);
+                                break;
+                        }
+                        return;
+                    }
+                }
+            }
+            
+            
+        }
+        catch(IOException e)
+        {
+            JOptionPane.showMessageDialog(null, "Invalid username or password");
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed

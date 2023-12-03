@@ -6,6 +6,7 @@ package Admin_Zayed;
 import javax.swing.JFrame;
 import Admin_Zayed.Login_Menu;
 import java.io.*;
+import javax.swing.*;
 
 
 public class Register_Menu extends JFrame {
@@ -13,7 +14,6 @@ public class Register_Menu extends JFrame {
         initComponents();
         AdminClass AC = new AdminClass();
         AC.centerFrameOnScreen(this);
-        
     }
 
     /**
@@ -157,6 +157,7 @@ public class Register_Menu extends JFrame {
         String username = textUsername.getText();
         String password = textPassword.getText();
         String role = comboRole.getSelectedItem().toString();
+        float balance = 0;
         
         String workingDirectory = System.getProperty("user.dir");
         File resourcesFolder = new File(workingDirectory + "/src/Admin_Zayed/resources");
@@ -169,12 +170,16 @@ public class Register_Menu extends JFrame {
         File filepath = new File(resourcesFolder, "Accounts.txt");
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, true));
-            writer.write(username + "," + password + "," + role);
+            writer.write(username + "," + password + "," + role + "," + balance);
             writer.newLine();
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        JOptionPane.showMessageDialog(this, "Registered Successfully");
+        Admin_Menu adminMenu = new Admin_Menu();
+        adminMenu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonRegisterActionPerformed
 
     private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
