@@ -2,9 +2,14 @@ package Admin_Zayed;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Window;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
+import javax.swing.table.DefaultTableModel;
 
-public class AdminClass 
+public class AdminClass
 {
+    
     // Method to center a JFrame on the screen
     public void centerFrameOnScreen(Window window)
     {
@@ -28,3 +33,4 @@ public class AdminClass
     }
     
 }
+
