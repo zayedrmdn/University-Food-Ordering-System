@@ -2,32 +2,20 @@ package Yjun;
 
 import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 
 public class Customer_Reviews extends javax.swing.JFrame {
-Customer cc = new Customer("Name");
+Customer cc = new Customer("John",1000);
   
     public Customer_Reviews() {
         initComponents();
-        SaveToCombo();
+        cc.SaveToCombo(CboxOrderId);
         } 
     
-    public void SaveToCombo(){
-         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\yjun0\\OneDrive\\Desktop\\Order.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("order ID:")) {
-                    String orderID = line.substring(10); 
-                    CboxOrderId.addItem(orderID); 
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+    
     
 
             
@@ -121,11 +109,10 @@ Customer cc = new Customer("Name");
     }//GEN-LAST:event_tFieldReviewsActionPerformed
 
     private void btnReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReviewActionPerformed
-        String filePath = "C:\\Users\\yjun0\\OneDrive\\Desktop\\Reviews.txt"; 
         String selectedID = CboxOrderId.getSelectedItem().toString();
         String line = tFieldReviews.getText() +"\n"+"Order ID: " +selectedID;
         cc.addReviews(line);
-        cc.saveReviewsToFile(filePath);
+        cc.saveReviewsToFile();
         JOptionPane.showMessageDialog(null, "Thank you for your review!");        
     }//GEN-LAST:event_btnReviewActionPerformed
 

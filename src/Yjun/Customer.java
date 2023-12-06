@@ -1,25 +1,41 @@
 package Yjun;
+
+import java.io.Serializable;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class Customer 
+public class Customer extends Order implements Serializable
 {
-   private String name;
-    private List<Order> orderHistory;
-    private List<String> reviews;
-    private List<Item> items;
+ private static final long serialVersionUID = 1L;
+ private List<String> reviews;
+ private String name;
+ private double credit;
    
-    public List<Item> getItems() {
-        return items;
+    public Customer(String name, double credit) {
+        this.name = name;
+        this.credit = credit;
+        this.reviews = new ArrayList<>();
     }
-    
-    public void saveReviewsToFile(String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))) {
+ 
+     public void addReviews(String review) 
+         {
+        reviews.add(review);
+        }
+    public void saveReviewsToFile() {
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Reviews.txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             for (String review : reviews) {
-                writer.write(review);
+                writer.write("Customer: " + name + ", Review: " + review);
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -27,35 +43,36 @@ public class Customer
         }
     }
 
-    public void addReviews(String review) 
-         {
-        reviews.add(review);
+   public void ViewMenu(JTable table)
+   {
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Menu.txt");
+        try {
+            FileReader Fread=new FileReader(file);
+            BufferedReader Bread=new BufferedReader(Fread);
+            DefaultTableModel md= (DefaultTableModel)table.getModel();
+            Object[] lines=Bread.lines().toArray();
+            
+            for(int i=0;i<lines.length;i++){
+                String[] row=lines[i].toString().split(" ");
+                md.addRow(row);
+            }
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+   
+   }
     
-    public Customer(String name) {
-        this.name = name;
-        this.reviews = new ArrayList<>(); // Initialize the reviews list
-        this.orderHistory = new ArrayList<>(); // Initialize the orderHistory list
-        this.items = new ArrayList<>(); // Initialize the items list
-    }
-}
-
-class Item
-{
-     private String name;
-    private double price;
-
-    public Item(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
-        return price;
-}
+    public double getCredit() {
+        return credit;
+    }
+
+   
 }
 

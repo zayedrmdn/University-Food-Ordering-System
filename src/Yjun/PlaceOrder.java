@@ -4,25 +4,12 @@
  */
 package Yjun;
 
-import Vendor_SEPEHR.MenuItem;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author yjun0
  */
 public class PlaceOrder extends javax.swing.JFrame {
-Order order = new Order();
+Customer cc =new Customer("Joohn",1000);
 
     /**
      * Creates new form PlaceOrder
@@ -47,6 +34,8 @@ Order order = new Order();
         jScrollPane1 = new javax.swing.JScrollPane();
         Menu = new javax.swing.JTable();
         btnShowMenu = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,12 +70,20 @@ Order order = new Order();
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indian", "Chinese", "Malay" }));
+
+        jLabel1.setText("Restaurant:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnToHistory)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -105,10 +102,17 @@ Order order = new Order();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnToHistory)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnToHistory)
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnShowMenu))
@@ -121,24 +125,19 @@ Order order = new Order();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Orders.txt");
-        try {
-            FileWriter fw=new FileWriter(file,true);
-            BufferedWriter bw=new BufferedWriter(fw);
-            for(int i=0;i<Menu.getRowCount();i++){
-                
-                    bw.write(Menu.getValueAt(i,0).toString()+" "+Menu.getValueAt(i,1).toString()+" ");
-                    
-            
-            bw.newLine(); 
-            }
-            bw.close();
-            fw.close();
+       cc.saveOrderToFile(Menu);
+        int selectedRow = Menu.getSelectedRow();
 
-            System.out.println("Order Ordered");
-            
-        } catch (IOException ex) {
-            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
+        if (selectedRow != -1) {
+            // Retrieve data from the selected row
+            Object foodName = Menu.getValueAt(selectedRow, 0);
+            Object price = Menu.getValueAt(selectedRow, 1);
+
+            // Call the addItem method with the selected data
+            cc.addItem(foodName, price);
+        } else {
+            // Handle the case where no row is selected
+            System.err.println("No row selected.");
         }
     }//GEN-LAST:event_btnOrderActionPerformed
 
@@ -148,22 +147,7 @@ Order order = new Order();
     }//GEN-LAST:event_btnToHistoryActionPerformed
 
     private void btnShowMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMenuActionPerformed
-        File file=new File("C:\\Users\\yjun0\\OneDrive\\Desktop\\Menu.txt");
-        try {
-            FileReader Fread=new FileReader(file);
-            BufferedReader Bread=new BufferedReader(Fread);
-            DefaultTableModel md= (DefaultTableModel)Menu.getModel();
-            Object[] lines=Bread.lines().toArray();
-            
-            for(int i=0;i<lines.length;i++){
-                String[] row=lines[i].toString().split(" ");
-                md.addRow(row);
-            }
-            
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuItem.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       cc.ViewMenu(Menu);
     }//GEN-LAST:event_btnShowMenuActionPerformed
 
     /**
@@ -206,6 +190,8 @@ Order order = new Order();
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnShowMenu;
     private javax.swing.JButton btnToHistory;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
