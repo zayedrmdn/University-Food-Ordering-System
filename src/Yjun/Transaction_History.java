@@ -13,9 +13,9 @@ public class Transaction_History extends javax.swing.JFrame {
      * Creates new form Transaction_History
      */
     public Transaction_History() {
-        Order or = new Order();
+        Customer cc = new Customer("John",1000);
         initComponents();
-         or.SaveToTable(TableTransacHistory);
+         cc.SaveToTable(TableTransacHistory);
     }
     
 

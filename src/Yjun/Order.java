@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Yjun;
 
 import java.io.BufferedReader;
@@ -151,7 +147,6 @@ public class Order{
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String formattedTime = dateFormat.format(currentTime);
 
-            // Save only the selected row to the file
             bw.write(table.getValueAt(selectedRow, 0).toString() + " " +
                      table.getValueAt(selectedRow, 1).toString() + " " +
                      formattedTime);
@@ -183,7 +178,7 @@ public class Order{
 
     public void addItem(Object foodName, Object price) {
         items.add(foodName);
-        prices.add(price);
+        prices.add(price); 
     }
 
     public List<Object> getItems() {
