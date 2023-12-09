@@ -6,14 +6,26 @@ package Admin_Zayed;
 import javax.swing.JFrame;
 import Admin_Zayed.Login_Menu;
 import java.io.*;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.List;
 import javax.swing.*;
 
 
-public class Register_Menu extends JFrame {
-    public Register_Menu() {
+public class Modify_Account extends JFrame {
+    private Object[] data;
+    private String tableName;
+    public Modify_Account(Object[] data, String tableName) {
         initComponents();
         AdminClass AC = new AdminClass();
         AC.centerFrameOnScreen(this);
+        
+        this.data = data;
+        this.tableName = tableName;
+        textUsername.setText((data[0]).toString());
+        textPassword.setText((data[1]).toString());
+        comboRole.setSelectedItem(tableName);
     }
 
     /**
@@ -33,7 +45,7 @@ public class Register_Menu extends JFrame {
         labelPassword = new javax.swing.JLabel();
         labelRole = new javax.swing.JLabel();
         comboRole = new javax.swing.JComboBox<>();
-        buttonRegister = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -74,14 +86,14 @@ public class Register_Menu extends JFrame {
             }
         });
 
-        buttonRegister.setBackground(new java.awt.Color(51, 255, 0));
-        buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buttonRegister.setText("SAVE");
-        buttonRegister.setBorder(null);
-        buttonRegister.setBorderPainted(false);
-        buttonRegister.addActionListener(new java.awt.event.ActionListener() {
+        buttonSave.setBackground(new java.awt.Color(51, 255, 0));
+        buttonSave.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonSave.setText("SAVE");
+        buttonSave.setBorder(null);
+        buttonSave.setBorderPainted(false);
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRegisterActionPerformed(evt);
+                buttonSaveActionPerformed(evt);
             }
         });
 
@@ -103,7 +115,7 @@ public class Register_Menu extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
@@ -128,7 +140,7 @@ public class Register_Menu extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -136,50 +148,40 @@ public class Register_Menu extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+   
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         
-        // Create a new instance of Login_Menu using its constructor
-        Login_Menu LM = new Login_Menu (this, true); 
-        
-        // Closes the current form
-        this.dispose(); 
-        
-        // Reopen the Login_Menu form
-        LM.setVisible(true); 
-        
+        this.dispose();
     }//GEN-LAST:event_buttonCancelActionPerformed
 
-    private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
-        
-        // Reads text fields & combo box
-        String username = textUsername.getText();
-        String password = textPassword.getText();
-        String role = comboRole.getSelectedItem().toString();
-        float balance = 0;
-        
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         String workingDirectory = System.getProperty("user.dir");
-        File resourcesFolder = new File(workingDirectory + "/src/Admin_Zayed/resources");
-
-        // Check if the folder exists, else it will create one.
-        if (!resourcesFolder.exists()) {
-            resourcesFolder.mkdir();
-        }
-
-        File filepath = new File(resourcesFolder, "Accounts.txt");
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, true));
-            writer.write(username + "," + password + "," + role + "," + balance);
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
+        File resourcesFile = new File(workingDirectory + "/src/Admin_Zayed/resources/Accounts.txt");
+        
+        String userToFind = data[0].toString();
+        String newUsername = textUsername.getText();
+        String newPassword = textPassword.getText();
+        String newRole = comboRole.getSelectedItem().toString();
+        Double newBalance = Double.parseDouble(data[2].toString());
+        try{
+            List<String> lines = Files.readAllLines(resourcesFile.toPath(), StandardCharsets.UTF_8);
+            
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.contains(userToFind)) {
+                    // Modify the line with the new values
+                    String modifiedLine = newUsername + "," + newPassword + "," + newRole + "," + newBalance;
+                    lines.set(i, modifiedLine);
+                    break; // Stop searching after the first occurrence (if there are multiple)
+                }
+            }
+            Files.write(resourcesFile.toPath(), lines, StandardCharsets.UTF_8);
+        }catch(IOException e){
             e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(this, "Registered Successfully");
-        Admin_Menu adminMenu = new Admin_Menu();
-        adminMenu.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_buttonRegisterActionPerformed
+        
+    }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
         // TODO add your handling code here:
@@ -219,14 +221,14 @@ public class Register_Menu extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register_Menu().setVisible(true);
+                //new Modify_Account(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
-    private javax.swing.JButton buttonRegister;
+    private javax.swing.JButton buttonSave;
     private javax.swing.JComboBox<String> comboRole;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelRegister;

@@ -1,6 +1,7 @@
 package Admin_Zayed;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.*;
@@ -42,8 +43,9 @@ public class Admin_Menu extends JFrame {
         buttonSave = new javax.swing.JButton();
         buttonCheckBalance = new javax.swing.JButton();
         buttonSignOut = new javax.swing.JButton();
-        buttonChangePass1 = new javax.swing.JButton();
+        buttonModify = new javax.swing.JButton();
         buttonRefresh = new javax.swing.JButton();
+        buttonTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,11 +167,11 @@ public class Admin_Menu extends JFrame {
             }
         });
 
-        buttonChangePass1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        buttonChangePass1.setText("Modify Account");
-        buttonChangePass1.addActionListener(new java.awt.event.ActionListener() {
+        buttonModify.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        buttonModify.setText("Modify Account");
+        buttonModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonChangePass1ActionPerformed(evt);
+                buttonModifyActionPerformed(evt);
             }
         });
 
@@ -177,6 +179,13 @@ public class Admin_Menu extends JFrame {
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);
+            }
+        });
+
+        buttonTest.setText("Test");
+        buttonTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTestActionPerformed(evt);
             }
         });
 
@@ -196,6 +205,9 @@ public class Admin_Menu extends JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonTest, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
@@ -206,14 +218,14 @@ public class Admin_Menu extends JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(buttonCheckBalance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonChangePass1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(buttonModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(21, 21, 21))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addComponent(buttonChangePass1)
+                .addComponent(buttonModify)
                 .addGap(8, 8, 8)
                 .addComponent(buttonChangePass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -224,6 +236,8 @@ public class Admin_Menu extends JFrame {
                     .addComponent(buttonSave))
                 .addGap(27, 27, 27)
                 .addComponent(buttonRefresh)
+                .addGap(18, 18, 18)
+                .addComponent(buttonTest)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonSignOut)
                 .addContainerGap())
@@ -236,6 +250,66 @@ public class Admin_Menu extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void openModify(){
+        Object[] data = readData(selectedTable());
+        
+        Modify_Account modify = new Modify_Account(data,getSelectedTableName());
+        modify.setVisible(true);
+    }
+    public JTable selectedTable (){
+        int selectedTable = tabbedPane.getSelectedIndex();
+        JTable table = null;
+        switch (selectedTable){
+            case 0:
+                table = tableAdmins;
+                break;
+            case 1:
+                table = tableVendors;
+                break;
+            case 2:
+                table = tableCustomers;
+                break;
+            case 3:
+                table = tableRunners;
+                break;
+            default:
+                System.out.println("No selected table");
+        }
+        return table;
+    }
+    private String getSelectedTableName() {
+        int selectedTable = tabbedPane.getSelectedIndex();
+        switch (selectedTable) {
+            case 0:
+                return "Admin";
+            case 1:
+                return "Vendor";
+            case 2:
+                return "Customer";
+            case 3:
+                return "Delivery Runner";
+            default:
+                System.out.println("No selected table");
+                return "";
+        }
+    }
+    public Object[] readData(JTable table){
+        
+        String userName = null; 
+        String passWord = null;
+        Double balance = null;
+        Object[] data = {userName, passWord, balance};
+        try{
+            int selectedRow = table.getSelectedRow();
+            data[0] = (String) table.getValueAt(selectedRow, 0);
+            data[1] = (String) table.getValueAt(selectedRow, 1);
+            data[2] = (Double) table.getValueAt(selectedRow, 2);
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("No selected row");
+        }
+        
+        return data;
+    }
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonDeleteActionPerformed
@@ -259,9 +333,11 @@ public class Admin_Menu extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonCheckBalanceActionPerformed
 
-    private void buttonChangePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangePass1ActionPerformed
+    private void buttonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonChangePass1ActionPerformed
+        openModify();
+        
+    }//GEN-LAST:event_buttonModifyActionPerformed
     public void clearTable(JTable table) {
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);
@@ -275,6 +351,31 @@ public class Admin_Menu extends JFrame {
         
         readsAccount();
     }//GEN-LAST:event_buttonRefreshActionPerformed
+
+    private void buttonTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTestActionPerformed
+        // TODO add your handling code here:
+        int selectedTable = tabbedPane.getSelectedIndex();
+        JTable table = null;
+        switch (selectedTable){
+            case 0:
+                table = tableAdmins;
+                break;
+            case 1:
+                table = tableVendors;
+                break;
+            case 2:
+                table = tableCustomers;
+                break;
+            case 3:
+                table = tableRunners;
+                break;
+            default:
+                System.out.println("No selected table");
+        }
+        
+        System.out.println(readData(table));
+        
+    }//GEN-LAST:event_buttonTestActionPerformed
     public static String username;
     public static String password;
     public static String role;
@@ -361,12 +462,13 @@ public class Admin_Menu extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonChangePass;
-    private javax.swing.JButton buttonChangePass1;
     private javax.swing.JButton buttonCheckBalance;
     private javax.swing.JButton buttonDelete;
+    private javax.swing.JButton buttonModify;
     private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSignOut;
+    private javax.swing.JButton buttonTest;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;

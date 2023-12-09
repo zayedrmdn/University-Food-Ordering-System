@@ -1,59 +1,19 @@
 package Admin_Zayed;
+import java.awt.*;
+import java.io.*;
 
 public class AdminAccount{
-    public String username;
-    public String password;
-    public String role;
-    public double balance;
-    public String table;
+    private String username;
+    private String address;
+    private String role;
+    private Double balance;
     
-    public AdminAccount(String username, String password, String role, double balance, String table )
-    {
+    public AdminAccount(String username, String address, String role, Double balance){
         this.username = username;
-        this.password = password;
+        this.address = address;
         this.role = role;
         this.balance = balance;
-        this.table = table;
     }
     
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public String getTable() {
-        return table;
-    }
-
-    // Setter methods (if needed)
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public void setTable(String table) {
-        this.table = table;
-    }
+    
 }

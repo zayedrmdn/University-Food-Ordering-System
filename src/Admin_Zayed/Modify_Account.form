@@ -42,7 +42,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="buttonRegister" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="buttonSave" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="buttonCancel" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -73,7 +73,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="comboRole" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="57" max="32767" attributes="0"/>
-              <Component id="buttonRegister" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="buttonSave" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="buttonCancel" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonRegister">
+    <Component class="javax.swing.JButton" name="buttonSave">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="ff" red="33" type="rgb"/>
@@ -169,7 +169,7 @@
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRegisterActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

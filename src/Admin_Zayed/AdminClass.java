@@ -2,6 +2,8 @@ package Admin_Zayed;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Window;
+import java.awt.*;
+import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -31,6 +33,5 @@ public class AdminClass
         // Set the location of the JFrame to the calculated coordinates
         window.setLocation(x, y);
     }
-    
 }
 
