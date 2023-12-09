@@ -10,7 +10,7 @@ package Yjun;
  * @author yjun0
  */
 public class OrderStatus extends javax.swing.JFrame {
-    Customer cc = new Customer("john",1000);
+    Customer cc = new Customer();
     /**
      * Creates new form OrderStatus
      */

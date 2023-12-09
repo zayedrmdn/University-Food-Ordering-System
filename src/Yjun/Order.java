@@ -19,15 +19,12 @@ public class Order{
     private List<Object> items;
     private List<Object> prices;
     private List<String> status;
-    private List<Customer> customers;
 
 
     public Order() {
         this.items = new ArrayList<>();
         this.prices = new ArrayList<>();
         this.status = new ArrayList<>();
-        this.customers = new ArrayList<>();
-
     }
     
     public void CancelOrder(JComboBox<String> comboBox,String selectedOrderID)
@@ -81,7 +78,7 @@ public class Order{
          String workingDirectory = System.getProperty("user.dir");
         File file = new File(workingDirectory + "/src/Yjun/resources/Orders.txt");
         
-        try {
+ try {
             FileReader Fread=new FileReader(file);
             BufferedReader Bread=new BufferedReader(Fread);
             DefaultTableModel md= (DefaultTableModel)table.getModel();
@@ -97,6 +94,32 @@ public class Order{
             e.printStackTrace();
         }
     }
+ 
+public void saveToTransacTable(JTable table) {
+    String workingDirectory = System.getProperty("user.dir");
+    File file = new File(workingDirectory + "/src/Yjun/resources/Orders.txt");
+
+try {
+        FileReader fread = new FileReader(file);
+        BufferedReader bread = new BufferedReader(fread);
+        DefaultTableModel md = (DefaultTableModel) table.getModel();
+        md.setRowCount(0); 
+
+        Object[] lines = bread.lines().toArray();
+
+        for (int i = 0; i < lines.length; i++) {
+            String[] row = lines[i].toString().trim().split("\\s+");
+            if (row.length >= 4) {
+                Object[] rowData = { row[0], row[1], row[row.length - 2], row[row.length - 1] };
+                md.addRow(rowData);
+            }
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
     
      public void SaveToCombo(JComboBox<String> comboBox){
         String workingDirectory = System.getProperty("user.dir");
@@ -115,6 +138,29 @@ public class Order{
         }
     }
      
+public void saveToVendorCombo(JComboBox<String> comboBox) {
+    String workingDirectory = System.getProperty("user.dir");
+    File file = new File(workingDirectory + "/src/Yjun/resources/Menu.txt");
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.trim().isEmpty()) {
+                continue;
+            }
+            comboBox.addItem(line.trim());
+
+            while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
+     
      public void SaveStatusToCombo(JComboBox<String> comboBox) {
         String workingDirectory = System.getProperty("user.dir");
         File file = new File(workingDirectory + "/src/Yjun/resources/Status.txt");
@@ -132,8 +178,9 @@ public class Order{
         }
     }
 
-    public void saveOrderToFile(JTable table) {
+    public void saveOrderToFile(JTable table, JComboBox<String> comboBoxVendor, JComboBox<String> comboBoxSelect) {
         int selectedRow = table.getSelectedRow();
+       
 
     if (selectedRow != -1) {
         String workingDirectory = System.getProperty("user.dir");
@@ -149,7 +196,11 @@ public class Order{
 
             bw.write(table.getValueAt(selectedRow, 0).toString() + " " +
                      table.getValueAt(selectedRow, 1).toString() + " " +
+                     comboBoxVendor.getSelectedItem()+" "+
+                     comboBoxSelect.getSelectedItem()+" "+
                      formattedTime);
+            
+           
 
             bw.newLine();
             bw.close();

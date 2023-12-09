@@ -4,18 +4,21 @@
  */
 package Yjun;
 
+import Admin_Zayed.AdminAccount;
+
 /**
  *
  * @author yjun0
  */
 public class MainPage extends javax.swing.JFrame {
-
+ Customer cc = new Customer();
     /**
      * Creates new form MainPage
      */
     public MainPage() {
         initComponents();
-        Customer cc = new Customer("John",1000);
+        customerName.setText(cc.getName());
+        System.out.println(cc.getName());
     }
     
 
@@ -33,7 +36,7 @@ public class MainPage extends javax.swing.JFrame {
         btnViewTransaction = new javax.swing.JButton();
         btnViewMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        customerName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,8 +71,8 @@ public class MainPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("WELCOME");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Jay");
+        customerName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerName.setText("Jay");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,10 +88,10 @@ public class MainPage extends javax.swing.JFrame {
                                 .addComponent(btnViewTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnViewStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnViewHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnViewMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnViewMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(111, 111, 111))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(134, 134, 134))))
         );
         layout.setVerticalGroup(
@@ -97,7 +100,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btnViewMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -172,7 +175,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton btnViewMenu;
     private javax.swing.JButton btnViewStatus;
     private javax.swing.JButton btnViewTransaction;
+    private javax.swing.JLabel customerName;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

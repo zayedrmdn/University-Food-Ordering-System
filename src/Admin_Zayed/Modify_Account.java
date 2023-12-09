@@ -4,13 +4,12 @@
  */
 package Admin_Zayed;
 import javax.swing.JFrame;
-import Admin_Zayed.Login_Menu;
 import java.io.*;
 import javax.swing.*;
 
 
-public class Register_Menu extends JFrame {
-    public Register_Menu() {
+public class Modify_Account extends JFrame {
+    public Modify_Account() {
         initComponents();
         AdminClass AC = new AdminClass();
         AC.centerFrameOnScreen(this);
@@ -40,11 +39,12 @@ public class Register_Menu extends JFrame {
 
         labelRegister.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelRegister.setText("Register");
+        labelRegister.setText("Modify Account");
 
-        buttonCancel.setBackground(new java.awt.Color(204, 204, 204));
+        buttonCancel.setBackground(new java.awt.Color(255, 0, 51));
         buttonCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buttonCancel.setText("CANCEL");
+        buttonCancel.setForeground(new java.awt.Color(255, 255, 255));
+        buttonCancel.setText("DISCARD");
         buttonCancel.setBorder(null);
         buttonCancel.setBorderPainted(false);
         buttonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -73,10 +73,9 @@ public class Register_Menu extends JFrame {
             }
         });
 
-        buttonRegister.setBackground(new java.awt.Color(255, 153, 51));
+        buttonRegister.setBackground(new java.awt.Color(51, 255, 0));
         buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buttonRegister.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRegister.setText("REGISTER");
+        buttonRegister.setText("SAVE");
         buttonRegister.setBorder(null);
         buttonRegister.setBorderPainted(false);
         buttonRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +88,6 @@ public class Register_Menu extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(labelRegister)
-                .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -108,8 +103,11 @@ public class Register_Menu extends JFrame {
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(labelRegister)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

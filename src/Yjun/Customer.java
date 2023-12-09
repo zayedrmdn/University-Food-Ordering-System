@@ -7,8 +7,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,13 +20,12 @@ public class Customer extends Order implements Serializable
  private List<String> reviews;
  private String name;
  private double credit;
-   
-    public Customer(String name, double credit) {
-        this.name = name;
-        this.credit = credit;
-        this.reviews = new ArrayList<>();
-    }
  
+ 
+    public Customer()
+    {
+    }
+   
      public void addReviews(String review) 
          {
         reviews.add(review);
@@ -42,31 +43,91 @@ public class Customer extends Order implements Serializable
             e.printStackTrace();
         }
     }
+    
+    
 
-   public void ViewMenu(JTable table)
-   {
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory + "/src/Yjun/resources/Menu.txt");
-        try {
-            FileReader Fread=new FileReader(file);
-            BufferedReader Bread=new BufferedReader(Fread);
-            DefaultTableModel md= (DefaultTableModel)table.getModel();
-            Object[] lines=Bread.lines().toArray();
-            
-            for(int i=0;i<lines.length;i++){
-                String[] row=lines[i].toString().split(" ");
-                md.addRow(row);
+   public void viewMenu(JTable table, JComboBox<String> cuisineComboBox) {
+    String workingDirectory = System.getProperty("user.dir");
+    File file = new File(workingDirectory + "/src/Yjun/resources/Menu.txt");
+
+    try {
+        FileReader fread = new FileReader(file);
+        BufferedReader bread = new BufferedReader(fread);
+        DefaultTableModel md = (DefaultTableModel) table.getModel();
+        md.setRowCount(0); 
+
+        Object[] lines = bread.lines().toArray();
+
+        if (cuisineComboBox.getSelectedItem() != null) {
+            String selectedCuisine = cuisineComboBox.getSelectedItem().toString();
+
+            for (int i = 0; i < lines.length; i++) {
+                String line = lines[i].toString().trim();
+
+                if (line.equals(selectedCuisine)) {
+                    i++; 
+
+                    while (i < lines.length && !lines[i].toString().trim().isEmpty()) {
+                        String[] row = lines[i].toString().split(" ");
+                        md.addRow(row);
+                        i++;
+                    }
+
+                    break; 
+                }
             }
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+   
+   public void saveOrderToFile(JTable table) {
+        int selectedRow = table.getSelectedRow();
+       
+
+    if (selectedRow != -1) {
+        String workingDirectory = System.getProperty("user.dir");
+        File file = new File(workingDirectory + "/src/Yjun/resources/Orders.txt");
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            Date currentTime = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedTime = dateFormat.format(currentTime);
+
+            bw.write(table.getValueAt(selectedRow, 0).toString() + " " +
+                     table.getValueAt(selectedRow, 1).toString() + " " +
+                     table.getValueAt(selectedRow, 2).toString() + " " +
+                     table.getValueAt(selectedRow, 3).toString() + " " +
+                     formattedTime);
             
-            
+           
+
+            bw.newLine();
+            bw.close();
+            fw.close();
+
+            System.out.println("Selected order saved to file");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-   
-   }
+    } else {
+        System.err.println("No row selected.");
+    }
+}
     
     public String getName() {
         return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getCredit() {

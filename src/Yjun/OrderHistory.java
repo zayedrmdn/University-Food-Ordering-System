@@ -6,7 +6,7 @@ package Yjun;
 
 
 public class OrderHistory extends javax.swing.JFrame {
-   Customer cc = new Customer("John",1000);
+   Customer cc = new Customer();
     
     public OrderHistory() {
         initComponents();
@@ -45,7 +45,7 @@ public class OrderHistory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Food", "Amount", "Date & Time"
+                "Food", "Amount", "Vendor", "Method", "Date & Time"
             }
         ));
         TableOrderHistory.setColumnSelectionAllowed(true);

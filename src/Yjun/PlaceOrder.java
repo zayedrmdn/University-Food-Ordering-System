@@ -9,13 +9,14 @@ package Yjun;
  * @author yjun0
  */
 public class PlaceOrder extends javax.swing.JFrame {
-Customer cc =new Customer("Joohn",1000);
+Customer cc =new Customer();
 
     /**
      * Creates new form PlaceOrder
      */
     public PlaceOrder() {
         initComponents();
+        cc.saveToVendorCombo(comboVendor);
     }
     
     
@@ -29,13 +30,17 @@ Customer cc =new Customer("Joohn",1000);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         btnOrder = new javax.swing.JButton();
         btnToHistory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Menu = new javax.swing.JTable();
         btnShowMenu = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboVendor = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        comboSelect = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,48 +75,56 @@ Customer cc =new Customer("Joohn",1000);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indian", "Chinese", "Malay" }));
-
         jLabel1.setText("Restaurant:");
+
+        comboSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DineIn", "Delivery" }));
+        comboSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSelectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnShowMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(btnOrder)
+                .addGap(87, 87, 87))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnToHistory)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnShowMenu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOrder)
-                        .addGap(87, 87, 87))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(72, Short.MAX_VALUE))))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnToHistory)
-                        .addGap(24, 24, 24))
+                    .addComponent(btnToHistory)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(comboVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,18 +138,15 @@ Customer cc =new Customer("Joohn",1000);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-       cc.saveOrderToFile(Menu);
+       cc.saveOrderToFile(Menu,comboVendor,comboSelect);
         int selectedRow = Menu.getSelectedRow();
 
         if (selectedRow != -1) {
-            // Retrieve data from the selected row
             Object foodName = Menu.getValueAt(selectedRow, 0);
             Object price = Menu.getValueAt(selectedRow, 1);
 
-            // Call the addItem method with the selected data
             cc.addItem(foodName, price);
         } else {
-            // Handle the case where no row is selected
             System.err.println("No row selected.");
         }
     }//GEN-LAST:event_btnOrderActionPerformed
@@ -147,8 +157,12 @@ Customer cc =new Customer("Joohn",1000);
     }//GEN-LAST:event_btnToHistoryActionPerformed
 
     private void btnShowMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMenuActionPerformed
-       cc.ViewMenu(Menu);
+       cc.viewMenu(Menu,comboVendor);
     }//GEN-LAST:event_btnShowMenuActionPerformed
+
+    private void comboSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSelectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboSelectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,7 +204,11 @@ Customer cc =new Customer("Joohn",1000);
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnShowMenu;
     private javax.swing.JButton btnToHistory;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JComboBox<String> comboSelect;
+    private javax.swing.JComboBox<String> comboVendor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

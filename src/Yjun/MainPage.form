@@ -33,13 +33,13 @@
                               <Component id="btnViewTransaction" max="32767" attributes="0"/>
                               <Component id="btnViewStatus" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnViewHistory" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnViewMenu" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="btnViewMenu" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="customerName" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -52,7 +52,7 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="customerName" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace pref="47" max="32767" attributes="0"/>
               <Component id="btnViewMenu" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -107,7 +107,7 @@
         <Property name="text" type="java.lang.String" value="WELCOME"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="customerName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>

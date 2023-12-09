@@ -13,9 +13,9 @@ public class Transaction_History extends javax.swing.JFrame {
      * Creates new form Transaction_History
      */
     public Transaction_History() {
-        Customer cc = new Customer("John",1000);
         initComponents();
-         cc.SaveToTable(TableTransacHistory);
+        Customer cc = new Customer();
+         cc.saveToTransacTable(TableTransacHistory);
     }
     
 
@@ -45,7 +45,7 @@ public class Transaction_History extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Food", "Amount"
+                "Food", "Amount", "Date", "Time"
             }
         ));
         jScrollPane1.setViewportView(TableTransacHistory);
