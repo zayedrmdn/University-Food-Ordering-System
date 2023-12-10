@@ -135,6 +135,8 @@ public class TopUp extends javax.swing.JFrame {
 
                     // Modify the line with the new values
                     lines.set(i, modifiedLine);
+                    
+                    
                     break; // Stop searching after the first occurrence (if there are multiple)
                 }
             }
@@ -143,6 +145,9 @@ public class TopUp extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        AdminClass ac = new AdminClass();
+        ac.generateReceipt(topUpAmount);
+        
     }//GEN-LAST:event_buttonTopUpActionPerformed
 
     private void buttonDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDoneActionPerformed

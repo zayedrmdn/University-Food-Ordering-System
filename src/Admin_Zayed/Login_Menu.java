@@ -225,6 +225,10 @@ public class Login_Menu extends JDialog {
                         }
                         return;
                     }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Invalid username or password");
+                        break;
+                    }
                 }
             }
             

@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -35,7 +38,7 @@ public class Admin_Menu extends JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         tableRunners = new javax.swing.JTable();
         buttonDelete = new javax.swing.JButton();
-        buttonSave = new javax.swing.JButton();
+        buttonAdd = new javax.swing.JButton();
         buttonTopUp = new javax.swing.JButton();
         buttonSignOut = new javax.swing.JButton();
         buttonModify = new javax.swing.JButton();
@@ -133,12 +136,12 @@ public class Admin_Menu extends JFrame {
             }
         });
 
-        buttonSave.setBackground(new java.awt.Color(51, 255, 51));
-        buttonSave.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        buttonSave.setText("Add");
-        buttonSave.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setBackground(new java.awt.Color(51, 255, 51));
+        buttonAdd.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        buttonAdd.setText("Add");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSaveActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
 
@@ -196,7 +199,7 @@ public class Admin_Menu extends JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
@@ -209,7 +212,7 @@ public class Admin_Menu extends JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDelete)
-                    .addComponent(buttonSave))
+                    .addComponent(buttonAdd))
                 .addGap(27, 27, 27)
                 .addComponent(buttonRefresh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,12 +305,37 @@ public class Admin_Menu extends JFrame {
     }
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
+        Object [] data = readData(getTable());
+        String username = data[0].toString();
         
+        String workingDirectory = System.getProperty("user.dir");
+        File resourcesFile = new File(workingDirectory + "/src/Admin_Zayed/resources/Accounts.txt");
+
+        try {
+            List<String> lines = Files.readAllLines(resourcesFile.toPath(), StandardCharsets.UTF_8);
+
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.contains(username)) {
+                    // Remove the line if it contains the specified username
+                    lines.remove(i);
+                    break; // Stop searching after the first occurrence (if there are multiple)
+                }
+            }
+
+            // Write the updated lines back to the file
+            Files.write(resourcesFile.toPath(), lines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(null, "This account has been deleted succesfully.");
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
-    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSaveActionPerformed
+        Register_Menu register = new Register_Menu();
+        register.setVisible(true);
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void buttonSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSignOutActionPerformed
         // TODO add your handling code here:
@@ -322,7 +350,14 @@ public class Admin_Menu extends JFrame {
 
     private void buttonTopUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTopUpActionPerformed
         // TODO add your handling code here:
-        openTopUp();
+        String tableName = getSelectedTableName();
+        if (tableName.equals("Customer")){
+            openTopUp();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "This role is not allowed to this function");
+        }
+        
     }//GEN-LAST:event_buttonTopUpActionPerformed
 
     private void buttonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifyActionPerformed
@@ -424,10 +459,10 @@ public class Admin_Menu extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonModify;
     private javax.swing.JButton buttonRefresh;
-    private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSignOut;
     private javax.swing.JButton buttonTopUp;
     private javax.swing.JScrollPane jScrollPane5;

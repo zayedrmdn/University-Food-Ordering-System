@@ -140,15 +140,9 @@ public class Register_Menu extends JFrame {
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         
-        // Create a new instance of Login_Menu using its constructor
-        Login_Menu LM = new Login_Menu (this, true); 
-        
         // Closes the current form
         this.dispose(); 
-        
-        // Reopen the Login_Menu form
-        LM.setVisible(true); 
-        
+     
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
@@ -177,8 +171,6 @@ public class Register_Menu extends JFrame {
             e.printStackTrace();
         }
         JOptionPane.showMessageDialog(this, "Registered Successfully");
-        Admin_Menu adminMenu = new Admin_Menu();
-        adminMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonRegisterActionPerformed
 
