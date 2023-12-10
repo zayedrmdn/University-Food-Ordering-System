@@ -1,0 +1,3 @@
+FriedChicken 200.10
+Burger 40.99
+

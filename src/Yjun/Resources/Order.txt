@@ -1,0 +1,86 @@
+Jay 
+kebab 
+KFC 
+order ID:1698232097775 Ordered by Customer at:2023-10-25 19:08:17
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698237922424 Date/Time:2023-10-25 20:45:22
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698238622970 Date/Time:2023-10-25 20:57:03
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698238839849 Date/Time:2023-10-25 21:00:39
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698238882237 Date/Time:2023-10-25 21:01:22
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698238883077 Date/Time:2023-10-25 21:01:23
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698238972347 Date/Time:2023-10-25 21:02:52
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698239327994 Date/Time:2023-10-25 21:08:48
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698239722222 Date/Time:2023-10-25 21:15:22
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698239878610 Date/Time:2023-10-25 21:17:58
+kebab 
+kebab 
+kebab 
+KFC 
+KFC 
+KFC 
+mcdonald 
+mcdonald 
+order ID:1698239906991 Date/Time:2023-10-25 21:18:27

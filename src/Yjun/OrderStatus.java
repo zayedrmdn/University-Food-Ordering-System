@@ -4,42 +4,22 @@
  */
 package Yjun;
 
-import Admin_Zayed.AdminClass;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 /**
  *
  * @author yjun0
  */
 public class OrderStatus extends javax.swing.JFrame {
-
+    Customer cc = new Customer("john",1000);
     /**
      * Creates new form OrderStatus
      */
     public OrderStatus() {
         initComponents();
-        SaveToCombo();
-        AdminClass AC = new AdminClass();
-
-//        AC.centerFrameOnScreen(this);
+        cc.SaveStatusToCombo(cboxOrderID);
     }
     
-      public void SaveToCombo(){
-         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\yjun0\\OneDrive\\Desktop\\Status.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("Order ID:")) {
-                    String orderID = line.substring(10); 
-                    cboxOrderID.addItem(orderID); 
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +39,7 @@ public class OrderStatus extends javax.swing.JFrame {
         btnToMenu = new javax.swing.JButton();
         cboxOrderID = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        btnCancelOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +67,13 @@ public class OrderStatus extends javax.swing.JFrame {
         });
 
         jLabel5.setText("OrderID:");
+
+        btnCancelOrder.setText("Cancel Order");
+        btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,12 +103,17 @@ public class OrderStatus extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
                                         .addComponent(BtnGetStatus))
                                     .addGap(109, 109, 109)))
                             .addComponent(jLabel4)
                             .addContainerGap()))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelOrder)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +135,9 @@ public class OrderStatus extends javax.swing.JFrame {
                     .addComponent(cboxOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(BtnGetStatus)
-                .addGap(31, 31, 31))
+                .addGap(2, 2, 2)
+                .addComponent(btnCancelOrder)
+                .addContainerGap())
         );
 
         pack();
@@ -170,6 +165,11 @@ public class OrderStatus extends javax.swing.JFrame {
         new MainPage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnToMenuActionPerformed
+
+    private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
+        String selectedOrder = (String) cboxOrderID.getSelectedItem();
+        cc.CancelOrder(cboxOrderID,selectedOrder);
+    }//GEN-LAST:event_btnCancelOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +209,7 @@ public class OrderStatus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnGetStatus;
     private javax.swing.JProgressBar JProgressINProgress;
+    private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnToMenu;
     private javax.swing.JComboBox<String> cboxOrderID;
     private javax.swing.JLabel jLabel1;

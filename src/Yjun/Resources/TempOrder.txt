@@ -1,0 +1,6 @@
+Order ID:1698239878610:Status Order is:Delivered
+Order ID:1698239878610:Status Order is:Delivered
+Order ID:1698239878610:Status Order is:Delivered
+Order ID:1698239906991:Status Order is:Preparing
+Order ID:1698239906921:Status Order is:Progressing 
+Order ID:1698239926921:Status Order is:null 
