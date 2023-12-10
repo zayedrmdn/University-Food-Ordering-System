@@ -13,11 +13,7 @@ public class Admin_Menu extends JFrame {
         initComponents();
         AdminClass AC = new AdminClass();
         AC.centerFrameOnScreen(this);
-        clearTable(tableAdmins);
-        clearTable(tableVendors);
-        clearTable(tableCustomers);
-        clearTable(tableRunners);
-        readsAccount();
+        refreshTable();
     }
 
     /**
@@ -38,14 +34,12 @@ public class Admin_Menu extends JFrame {
         tableCustomers = new javax.swing.JTable();
         jScrollPane9 = new javax.swing.JScrollPane();
         tableRunners = new javax.swing.JTable();
-        buttonChangePass = new javax.swing.JButton();
         buttonDelete = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
-        buttonCheckBalance = new javax.swing.JButton();
+        buttonTopUp = new javax.swing.JButton();
         buttonSignOut = new javax.swing.JButton();
         buttonModify = new javax.swing.JButton();
         buttonRefresh = new javax.swing.JButton();
-        buttonTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,9 +123,6 @@ public class Admin_Menu extends JFrame {
 
         tabbedPane.addTab("Runners", jScrollPane9);
 
-        buttonChangePass.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        buttonChangePass.setText("Change Password");
-
         buttonDelete.setBackground(new java.awt.Color(255, 51, 51));
         buttonDelete.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         buttonDelete.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,11 +142,11 @@ public class Admin_Menu extends JFrame {
             }
         });
 
-        buttonCheckBalance.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        buttonCheckBalance.setText("Top Up Balance");
-        buttonCheckBalance.addActionListener(new java.awt.event.ActionListener() {
+        buttonTopUp.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        buttonTopUp.setText("Top Up Balance");
+        buttonTopUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCheckBalanceActionPerformed(evt);
+                buttonTopUpActionPerformed(evt);
             }
         });
 
@@ -182,13 +173,6 @@ public class Admin_Menu extends JFrame {
             }
         });
 
-        buttonTest.setText("Test");
-        buttonTest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTestActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,40 +188,30 @@ public class Admin_Menu extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonTest, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(buttonTopUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonChangePass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(buttonCheckBalance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21))))))
+                                .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(buttonModify)
-                .addGap(8, 8, 8)
-                .addComponent(buttonChangePass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonCheckBalance)
+                .addComponent(buttonTopUp)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDelete)
                     .addComponent(buttonSave))
                 .addGap(27, 27, 27)
                 .addComponent(buttonRefresh)
-                .addGap(18, 18, 18)
-                .addComponent(buttonTest)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonSignOut)
                 .addContainerGap())
@@ -249,7 +223,23 @@ public class Admin_Menu extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void refreshTable(){
+        clearTable(tableAdmins);
+        clearTable(tableVendors);
+        clearTable(tableCustomers);
+        clearTable(tableRunners);
+        
+        readsAccount();
+    }
+    public void openTopUp(){
+        Object[] data = readData(selectedTable());
+        TopUp topUp = new TopUp(data);
+        
+        topUp.setVisible(true);
+        
+    }
+    
     public void openModify(){
         Object[] data = readData(selectedTable());
         
@@ -312,6 +302,7 @@ public class Admin_Menu extends JFrame {
     }
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
@@ -329,9 +320,10 @@ public class Admin_Menu extends JFrame {
         }
     }//GEN-LAST:event_buttonSignOutActionPerformed
 
-    private void buttonCheckBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCheckBalanceActionPerformed
+    private void buttonTopUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTopUpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCheckBalanceActionPerformed
+        openTopUp();
+    }//GEN-LAST:event_buttonTopUpActionPerformed
 
     private void buttonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifyActionPerformed
         // TODO add your handling code here:
@@ -344,48 +336,18 @@ public class Admin_Menu extends JFrame {
     }
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         // TODO add your handling code here:
-        clearTable(tableAdmins);
-        clearTable(tableVendors);
-        clearTable(tableCustomers);
-        clearTable(tableRunners);
-        
-        readsAccount();
+        refreshTable();
     }//GEN-LAST:event_buttonRefreshActionPerformed
-
-    private void buttonTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTestActionPerformed
-        // TODO add your handling code here:
-        int selectedTable = tabbedPane.getSelectedIndex();
-        JTable table = null;
-        switch (selectedTable){
-            case 0:
-                table = tableAdmins;
-                break;
-            case 1:
-                table = tableVendors;
-                break;
-            case 2:
-                table = tableCustomers;
-                break;
-            case 3:
-                table = tableRunners;
-                break;
-            default:
-                System.out.println("No selected table");
-        }
-        
-        System.out.println(readData(table));
-        
-    }//GEN-LAST:event_buttonTestActionPerformed
     public static String username;
     public static String password;
     public static String role;
     public static double balance;
 
     public void readsAccount() {
-        String filePath = "C:\\Users\\Zayed\\Documents\\NetBeansProjects\\University-Food-Ordering-System\\src\\Admin_Zayed\\resources\\Accounts.txt";
-        
+        String workingDirectory = System.getProperty("user.dir");
+        File resourcesFile = new File(workingDirectory + "/src/Admin_Zayed/resources/Accounts.txt");
         try {
-            FileReader fr = new FileReader(filePath);
+            FileReader fr = new FileReader(resourcesFile);
             BufferedReader reader = new BufferedReader(fr);
 
             String line;
@@ -395,6 +357,7 @@ public class Admin_Menu extends JFrame {
                 username = parts[0];
                 password = parts[1];
                 role = parts[2];
+                balance = Double.parseDouble(parts[3]);
                 
                 addToTable(getTable());
             }
@@ -461,14 +424,12 @@ public class Admin_Menu extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonChangePass;
-    private javax.swing.JButton buttonCheckBalance;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonModify;
     private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSignOut;
-    private javax.swing.JButton buttonTest;
+    private javax.swing.JButton buttonTopUp;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
