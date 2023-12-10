@@ -24,7 +24,9 @@ public class Customer extends Order implements Serializable
  
     public Customer()
     {
+      credit = 6000.10;
     }
+    
    
      public void addReviews(String review) 
          {
@@ -132,6 +134,10 @@ public class Customer extends Order implements Serializable
 
     public double getCredit() {
         return credit;
+    }
+    
+    public void deductCredit(double amount){   
+        credit -= amount;
     }
 
    

@@ -4,6 +4,8 @@
  */
 package Yjun;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author yjun0
@@ -17,6 +19,8 @@ Customer cc =new Customer();
     public PlaceOrder() {
         initComponents();
         cc.saveToVendorCombo(comboVendor);
+        double credit = cc.getCredit();
+        labelWallet1.setText("Wallet Credit: " + String.format("%.2f", credit));
     }
     
     
@@ -41,6 +45,7 @@ Customer cc =new Customer();
         comboVendor = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         comboSelect = new javax.swing.JComboBox<>();
+        labelWallet1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +89,8 @@ Customer cc =new Customer();
             }
         });
 
+        labelWallet1.setText("Wallet:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,14 +104,19 @@ Customer cc =new Customer();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnToHistory)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnToHistory))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelWallet1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -118,7 +130,9 @@ Customer cc =new Customer();
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(comboVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelWallet1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
@@ -138,17 +152,29 @@ Customer cc =new Customer();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-       cc.saveOrderToFile(Menu,comboVendor,comboSelect);
-        int selectedRow = Menu.getSelectedRow();
+cc.saveOrderToFile(Menu, comboVendor, comboSelect);
+    int selectedRow = Menu.getSelectedRow();
 
-        if (selectedRow != -1) {
-            Object foodName = Menu.getValueAt(selectedRow, 0);
-            Object price = Menu.getValueAt(selectedRow, 1);
+    if (selectedRow != -1) {
+        Object foodName = Menu.getValueAt(selectedRow, 0);
+        Object price = Menu.getValueAt(selectedRow, 1);
+
+        try {
+            double foodPrice = Double.parseDouble(price.toString());
+
+            double credit = cc.getCredit();
+            cc.deductCredit(foodPrice);
+            
+            labelWallet1.setText("Wallet Credit: " + String.format("%.2f", cc.getCredit()));
 
             cc.addItem(foodName, price);
-        } else {
-            System.err.println("No row selected.");
+
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid price format.");
         }
+    } else {
+        System.err.println("No row selected.");
+    }
     }//GEN-LAST:event_btnOrderActionPerformed
 
     private void btnToHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToHistoryActionPerformed
@@ -211,5 +237,6 @@ Customer cc =new Customer();
     private javax.swing.JComboBox<String> comboVendor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelWallet1;
     // End of variables declaration//GEN-END:variables
 }

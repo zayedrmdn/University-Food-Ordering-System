@@ -3,6 +3,6 @@ FriedChicken 200.10
 Burger 40.99
 
 Chinese
-ChingChong 33.2
+Noodles 33.2
 
 
