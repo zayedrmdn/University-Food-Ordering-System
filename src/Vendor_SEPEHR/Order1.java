@@ -5,6 +5,7 @@
 package Vendor_SEPEHR;
 
 import static Vendor_SEPEHR.VendorClass.AcceptOrder;
+import static Vendor_SEPEHR.VendorClass.Cancelellation;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -101,14 +102,7 @@ public class Order1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        try{
-            FileWriter fw=new FileWriter("/Users/sepehrjokanian/Documents/Order.txt",false);
-            PrintWriter pw=new PrintWriter(fw,false);
-            pw.flush();
-            pw.close();
-            fw.close();
-            System.out.println("Order Cancelled");
-        }catch(IOException exception){}
+       Cancelellation();
     }//GEN-LAST:event_CancelActionPerformed
 
     /**

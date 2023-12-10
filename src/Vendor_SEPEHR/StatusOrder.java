@@ -4,12 +4,18 @@
  */
 package Vendor_SEPEHR;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -25,7 +31,24 @@ public class StatusOrder extends javax.swing.JFrame {
      */
     public StatusOrder() {
         initComponents();
+        fillCombo();
     }
+    public void fillCombo(){
+         File file=new File("/Users/sepehrjokanian/Documents/ID.txt");
+        try {
+            FileReader fr=new FileReader(file);
+            BufferedReader br=new BufferedReader(fr);
+           Object[] lines=br.lines().toArray();
+            for(int i=0;i<lines.length;i++){
+                String line=lines[i].toString();
+                jComboBox1.addItem(line);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(StatusOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,32 +60,25 @@ public class StatusOrder extends javax.swing.JFrame {
     private void initComponents() {
 
         ProgressBar = new javax.swing.JProgressBar();
-        BackButton = new javax.swing.JButton();
-        buttonNext = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        buttonNext1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ProgressBar.setBackground(new java.awt.Color(255, 255, 255));
 
-        BackButton.setBackground(new java.awt.Color(255, 255, 0));
-        BackButton.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        BackButton.setText("Back Step");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonBack.setBackground(new java.awt.Color(51, 255, 51));
+        buttonBack.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        buttonBack.setText("Next Step");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
-            }
-        });
-
-        buttonNext.setBackground(new java.awt.Color(0, 255, 0));
-        buttonNext.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        buttonNext.setText("Next Step");
-        buttonNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonNextActionPerformed(evt);
+                buttonBackActionPerformed(evt);
             }
         });
 
@@ -76,13 +92,32 @@ public class StatusOrder extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
-        jLabel1.setText("Preparing");
+        jLabel1.setText("Ordering");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
         jLabel2.setText("Progressing");
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
         jLabel3.setText("Delivered");
+
+        jComboBox1.setFont(new java.awt.Font("Helvetica Neue", 3, 14)); // NOI18N
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jLabel4.setText(" Order ID");
+
+        buttonNext1.setBackground(new java.awt.Color(255, 51, 153));
+        buttonNext1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        buttonNext1.setText("First Step");
+        buttonNext1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNext1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,41 +126,50 @@ public class StatusOrder extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(116, 116, 116)
                 .addComponent(jLabel3)
                 .addGap(63, 63, 63))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ProgressBar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163)))
                 .addGap(127, 127, 127))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(288, 288, 288))
+                .addGap(298, 298, 298))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(99, 99, 99)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -133,20 +177,20 @@ public class StatusOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         // TODO add your handling code here:
         
        int currentValue=ProgressBar.getValue();
        int newValue=currentValue+50;
        ProgressBar.setValue(newValue);
-       
+       String ID=jComboBox1.getSelectedItem().toString();
        
        if(newValue==50){
            File file=new File("/Users/sepehrjokanian/Documents/Status.txt");
            try {
                FileWriter fw=new FileWriter(file,true);
                BufferedWriter bw=new BufferedWriter(fw);
-               bw.write(" :New Status Has Changed To:Progressing");
+               bw.write("OrderID: "+ID+ " :Status Has Changed To:Progressing");
                bw.newLine();
                bw.close();
                fw.close();
@@ -161,7 +205,7 @@ public class StatusOrder extends javax.swing.JFrame {
            try {
                FileWriter fw=new FileWriter(file,true);
                BufferedWriter bw=new BufferedWriter(fw);
-               bw.write(" :New Status Has Changed To:Delivered");
+               bw.write("OrderID: "+ID+ " :New Status Has Changed To:Delivered");
                bw.newLine();
                bw.close();
                fw.close();
@@ -171,17 +215,26 @@ public class StatusOrder extends javax.swing.JFrame {
            }
            
        }
-    }//GEN-LAST:event_buttonNextActionPerformed
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+       
+        
+        
+   
+
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void buttonNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNext1ActionPerformed
         int currentValue=ProgressBar.getValue();
-        int newValue=currentValue-50;
+        int newValue=currentValue-100;
         ProgressBar.setValue(newValue);
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }//GEN-LAST:event_buttonNext1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,12 +272,14 @@ public class StatusOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackButton;
     private javax.swing.JProgressBar ProgressBar;
-    private javax.swing.JButton buttonNext;
+    private javax.swing.JButton buttonBack;
+    private javax.swing.JButton buttonNext1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

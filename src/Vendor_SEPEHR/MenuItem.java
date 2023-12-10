@@ -259,9 +259,7 @@ public class MenuItem extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory + "/src/Vendor_SEPEHR/resources/Menu.txt");
-
+       File file=new File("/Users/sepehrjokanian/Documents/Menu.txt");
         try {
             FileWriter fw=new FileWriter(file);
             BufferedWriter bw=new BufferedWriter(fw);
@@ -283,14 +281,11 @@ public class MenuItem extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveActionPerformed
 
     private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory + "/src/Vendor_SEPEHR/resources/Menu.txt");
+        File file=new File("/Users/sepehrjokanian/Documents/Menu.txt");
         try {
             FileReader Fread=new FileReader(file);
             BufferedReader Bread=new BufferedReader(Fread);
             DefaultTableModel md= (DefaultTableModel)jTable1.getModel();
-            //Clear Table
-            md.setRowCount(0);
             Object[] lines=Bread.lines().toArray();
             
             for(int i=0;i<lines.length;i++){

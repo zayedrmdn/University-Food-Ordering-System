@@ -191,14 +191,17 @@ public class AcceptOrder extends javax.swing.JFrame {
     private void SaveOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveOrderActionPerformed
        File file=new File("/Users/sepehrjokanian/Documents/Order.txt");
        File file1=new File("/Users/sepehrjokanian/Documents/Revenue.txt");
-       File file2=new File("/Users/sepehrjokanian/Documents/Status.txt");
+       
+       File file3=new File("/Users/sepehrjokanian/Documents/ID.txt");
         try {
             FileWriter fw=new FileWriter(file,true);
             FileWriter fw1=new FileWriter(file1,true);
-            FileWriter fw2=new FileWriter(file2,true);
+            
+            FileWriter fw3=new FileWriter(file3,true);
             BufferedWriter bw=new BufferedWriter(fw);
             BufferedWriter bw1=new BufferedWriter(fw1);
-            BufferedWriter bw2=new BufferedWriter(fw2);
+           
+            BufferedWriter bw3=new BufferedWriter(fw3);
             String orderID=generateOrderID();
             for(int i=0;i<jTable2.getRowCount();i++){
                 
@@ -222,9 +225,11 @@ public class AcceptOrder extends javax.swing.JFrame {
             bw1.close();
             fw.close();
             fw1.close();
-            bw2.write("Order ID:"+orderID+":Status Order is:Preparing ");
-            bw2.close();
-            fw2.close();
+          
+            bw3.write(orderID);
+            bw3.newLine();
+            bw3.close();
+            fw1.close();
             System.out.println("Order Received");
             
         } catch (IOException ex) {
@@ -236,13 +241,11 @@ public class AcceptOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_SaveOrderActionPerformed
 
     private void ShowMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowMenuActionPerformed
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory + "/src/Vendor_SEPEHR/resources/Menu.txt");
+         File file=new File("/Users/sepehrjokanian/Documents/Menu.txt");
         try {
             FileReader Fread=new FileReader(file);
             BufferedReader Bread=new BufferedReader(Fread);
             DefaultTableModel md= (DefaultTableModel)jTable1.getModel();
-            md.setRowCount(0);
             Object[] lines=Bread.lines().toArray();
             
             for(int i=0;i<lines.length;i++){
