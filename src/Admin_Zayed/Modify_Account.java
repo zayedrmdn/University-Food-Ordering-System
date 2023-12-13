@@ -180,6 +180,7 @@ public class Modify_Account extends JFrame {
         }catch(IOException e){
             e.printStackTrace();
         }
+        this.dispose();
         
     }//GEN-LAST:event_buttonSaveActionPerformed
 
