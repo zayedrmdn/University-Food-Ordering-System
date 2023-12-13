@@ -182,13 +182,14 @@ public class Login_Menu extends JDialog {
         //buttonLogin
         String username = textUsername.getText();
         String password = textPassword.getText();
-        
+        boolean credentialsMatch = false;
         String workingDirectory = System.getProperty("user.dir");
         File filepath = new File(workingDirectory + "/src/Admin_Zayed/resources/Accounts.txt");
         
         try 
         {
             BufferedReader reader = new BufferedReader(new FileReader(filepath));
+            
             String line;
             while ((line = reader.readLine()) != null)
             {
@@ -223,22 +224,22 @@ public class Login_Menu extends JDialog {
                                 new Admin_Zayed.Admin_Menu().setVisible(true);
                                 break;
                         }
+                        credentialsMatch = true;
                         return;
                     }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Invalid username or password");
-                        break;
-                    }
+                    
                 }
             }
-            
-            
+            if (!credentialsMatch){
+            JOptionPane.showMessageDialog(null, "Invalid username or password");
+        }
         }
         catch(IOException e)
         {
             JOptionPane.showMessageDialog(null, "Invalid username or password");
             e.printStackTrace();
         }
+        
         
     }//GEN-LAST:event_buttonLoginActionPerformed
 
